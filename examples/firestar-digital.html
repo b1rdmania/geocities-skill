@@ -1,0 +1,1291 @@
+<html>
+<head>
+<title>~*~ AmBeR's Firestar Digital Trading Infrastructure Page ~*~ VARA Licensed ~*~ Canton Blockchain ~*~ BEST PAGE ON THE WEB ~*~</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="firestar digital, trading infrastructure, canton blockchain, validator, FX trading, precious metals, digital assets, Dubai, VARA, OTC broker, blockchain, settlement, reconciliation, gold, money, amber, BEST PAGE EVER">
+<meta name="description" content="Welcome to Firestar Digital - the COOLEST trading infrastructure company on the World Wide Web!!! Made by Amber who is a GENIUS!!!">
+<meta name="author" content="Amber - Founder and CEO and Chief Vibes Officer of Firestar Digital">
+<script language="JavaScript">
+<!--
+// ============================================
+// DOLLAR ECHO TRAIL - CUTTING EDGE DHTML!!!!
+// Its like the cursor leaves GHOST DOLLARS
+// behind it everywhere you go!!!
+// Amber spent 5 DAYS getting this to work!!!
+// The echo effect makes it look like youre
+// DRAGGING MONEY behind you which is basically
+// what I do in real life LOL!!!
+// ============================================
+var echoCount = 12;
+var echoParts = new Array();
+var mouseX = 0;
+var mouseY = 0;
+var mouseClientX = 0;
+var mouseClientY = 0;
+var historySize = 60;
+var mouseHistory = new Array();
+
+function initEcho() {
+    // pre-fill history buffer
+    for (var h = 0; h < historySize; h++) {
+        mouseHistory[h] = new Array(-100, -100);
+    }
+    for (var i = 0; i < echoCount; i++) {
+        var d = document.createElement("div");
+        d.id = "echo" + i;
+        d.style.position = "fixed";
+        d.style.zIndex = "" + (9999 - i);
+        d.style.pointerEvents = "none";
+        var sz = Math.max(30 - (i * 2), 10);
+        var op = Math.max(1.0 - (i * 0.08), 0.05);
+        var colors = new Array("#FFD700", "#FFC200", "#FFB700", "#FFAA00", "#FF9E00", "#FF9200", "#FF8600", "#FF7A00", "#FF6E00", "#FF6200", "#FF5600", "#FF4A00");
+        d.innerHTML = "<font face='Georgia, serif' color='" + colors[i] + "' style='font-size:" + sz + "px;opacity:" + op + "'><b><i>$</i></b></font>";
+        document.body.appendChild(d);
+        echoParts[i] = d;
+    }
+}
+
+function doEcho() {
+    // push new position to front, shift everything back
+    for (var i = historySize - 1; i > 0; i--) {
+        mouseHistory[i] = mouseHistory[i - 1];
+    }
+    mouseHistory[0] = new Array(mouseClientX, mouseClientY);
+
+    for (var i = 0; i < echoCount; i++) {
+        var idx = (i + 1) * 4;
+        if (idx >= historySize) idx = historySize - 1;
+        echoParts[i].style.left = mouseHistory[idx][0] + "px";
+        echoParts[i].style.top = mouseHistory[idx][1] + "px";
+    }
+    setTimeout("doEcho()", 16);
+}
+
+// also keep some exploding sparkle dollars for extra chaos
+var sparkles = 12;
+var sparkleParts = new Array();
+var sparkleX = new Array();
+var sparkleY = new Array();
+var sparkleVx = new Array();
+var sparkleVy = new Array();
+var sparkleLife = new Array();
+
+function initSparkles() {
+    for (var i = 0; i < sparkles; i++) {
+        var d = document.createElement("div");
+        d.style.position = "absolute";
+        d.style.zIndex = "9998";
+        d.style.pointerEvents = "none";
+        d.innerHTML = "<font color='#FFD700' size='4'><b><i>$</i></b></font>";
+        document.body.appendChild(d);
+        sparkleParts[i] = d;
+        sparkleX[i] = 0;
+        sparkleY[i] = 0;
+        sparkleVx[i] = 0;
+        sparkleVy[i] = 0;
+        sparkleLife[i] = 0;
+    }
+}
+
+var sparkleTimer = 0;
+function doSparkles() {
+    sparkleTimer++;
+    for (var i = 0; i < sparkles; i++) {
+        if (sparkleLife[i] <= 0) {
+            if (sparkleTimer % 4 == i % 4) {
+                sparkleX[i] = mouseX + (Math.random() * 20 - 10);
+                sparkleY[i] = mouseY + (Math.random() * 20 - 10);
+                sparkleVx[i] = (Math.random() - 0.5) * 5;
+                sparkleVy[i] = -2 - Math.random() * 3;
+                sparkleLife[i] = 25 + Math.floor(Math.random() * 15);
+            }
+        }
+        if (sparkleLife[i] > 0) {
+            sparkleX[i] = sparkleX[i] + sparkleVx[i];
+            sparkleY[i] = sparkleY[i] + sparkleVy[i];
+            sparkleVy[i] = sparkleVy[i] + 0.15;
+            sparkleLife[i]--;
+            sparkleParts[i].style.left = sparkleX[i] + "px";
+            sparkleParts[i].style.top = sparkleY[i] + "px";
+            sparkleParts[i].style.visibility = "visible";
+            if (sparkleLife[i] > 15) {
+                sparkleParts[i].innerHTML = "<font color='#FFD700' size='5'><b><i>$</i></b></font>";
+            } else if (sparkleLife[i] > 8) {
+                sparkleParts[i].innerHTML = "<font color='#FFA500' size='3'><b><i>$</i></b></font>";
+            } else {
+                sparkleParts[i].innerHTML = "<font color='#FF6600' size='2'><i>$</i></font>";
+            }
+        } else {
+            sparkleParts[i].style.visibility = "hidden";
+        }
+    }
+    setTimeout("doSparkles()", 35);
+}
+
+document.onmousemove = function(e) {
+    if (!e) e = window.event;
+    mouseX = e.pageX ? e.pageX : e.clientX + document.body.scrollLeft;
+    mouseY = e.pageY ? e.pageY : e.clientY + document.body.scrollTop;
+    mouseClientX = e.clientX ? e.clientX : e.pageX - document.body.scrollLeft;
+    mouseClientY = e.clientY ? e.clientY : e.pageY - document.body.scrollTop;
+};
+
+// ============================================
+// ANIMATED SPACE BACKGROUND!!!
+// Stars that MOVE across the screen!!!
+// Like youre flying through space!!!
+// (space = where the MOON is = MOON LAMBO!!!)
+// ============================================
+var bgStars = new Array();
+var maxBgStars = 80;
+
+function initBgStars() {
+    for (var i = 0; i < maxBgStars; i++) {
+        var s = document.createElement("div");
+        s.style.position = "fixed";
+        s.style.zIndex = "0";
+        s.style.pointerEvents = "none";
+        var sz = 1 + Math.floor(Math.random() * 3);
+        var bright = 0.3 + Math.random() * 0.7;
+        var colors = new Array("#FFFFFF", "#FFFFCC", "#CCFFFF", "#FFCCFF", "#FFD700", "#FFFFFF", "#FFFFCC");
+        var col = colors[Math.floor(Math.random() * colors.length)];
+        s.innerHTML = "<font color='" + col + "' style='font-size:" + sz + "px;opacity:" + bright + "'>&#9733;</font>";
+        s.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+        s.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
+        document.body.appendChild(s);
+        bgStars[i] = new Array(s, 0.2 + Math.random() * 1.5, Math.random() * 0.3 - 0.15, bright, parseFloat(s.style.left), parseFloat(s.style.top));
+    }
+}
+
+var twinkleTimer = 0;
+function animateStars() {
+    twinkleTimer++;
+    for (var i = 0; i < maxBgStars; i++) {
+        var star = bgStars[i];
+        var el = star[0];
+        var speed = star[1];
+        var drift = star[2];
+        var baseBright = star[3];
+        var x = star[4];
+        var y = star[5];
+        // move downward and slightly sideways
+        y = y + speed;
+        x = x + drift;
+        // wrap around
+        if (y > window.innerHeight) {
+            y = -5;
+            x = Math.floor(Math.random() * window.innerWidth);
+        }
+        if (x > window.innerWidth) x = 0;
+        if (x < 0) x = window.innerWidth;
+        // twinkle
+        var twinkle = baseBright + Math.sin((twinkleTimer + i * 17) * 0.1) * 0.3;
+        if (twinkle < 0.1) twinkle = 0.1;
+        if (twinkle > 1) twinkle = 1;
+        el.style.left = x + "px";
+        el.style.top = y + "px";
+        el.style.opacity = "" + twinkle;
+        star[4] = x;
+        star[5] = y;
+    }
+    setTimeout("animateStars()", 50);
+}
+
+// ============================================
+// SHOOTING STARS!!! Because WHY NOT!!!
+// Random shooting stars streak across screen
+// ============================================
+function shootingStar() {
+    var s = document.createElement("div");
+    s.style.position = "fixed";
+    s.style.zIndex = "1";
+    s.style.pointerEvents = "none";
+    s.innerHTML = "<font color='#FFD700' style='font-size:14px;'>&#9733;---</font>";
+    var startX = Math.floor(Math.random() * window.innerWidth);
+    var startY = Math.floor(Math.random() * (window.innerHeight / 2));
+    s.style.left = startX + "px";
+    s.style.top = startY + "px";
+    document.body.appendChild(s);
+    var x = startX;
+    var y = startY;
+    var dx = 8 + Math.random() * 12;
+    var dy = 3 + Math.random() * 5;
+    var life = 30;
+    var moveShoot = setInterval(function() {
+        x = x + dx;
+        y = y + dy;
+        life--;
+        s.style.left = x + "px";
+        s.style.top = y + "px";
+        s.style.opacity = "" + (life / 30);
+        if (life <= 0) {
+            s.parentNode.removeChild(s);
+            clearInterval(moveShoot);
+        }
+    }, 30);
+    // next shooting star in 3-8 seconds
+    setTimeout("shootingStar()", 3000 + Math.floor(Math.random() * 5000));
+}
+
+// ============================================
+// RIGHT CLICK PROTECTION!!!
+// Amber worked REALLY hard on this page!!!
+// DO NOT STEAL!!!!!!!!!
+// ============================================
+document.oncontextmenu = function() {
+    alert("EXCUSE ME!?!?!?\n\nYou are trying to steal Amber's source code!?!?\n\nI spent FOUR WEEKS making this page!!!\nDo you know how long it took to get the\nfalling coins to work!?!? DO YOU!?!?\n\nThis page is (c) 1998 Amber / Firestar Digital\nAll Rights Reserved FOREVER!!!\n\nIf you want help making YOUR OWN page\nemail me at xXfirestargirl98Xx@hotmail.com\nand MAYBE I will help you if youre nice about it");
+    return false;
+};
+
+// ============================================
+// LIVE CLOCK - Shows current time on the page
+// I learned this from JavaScript Source!!!
+// It took me like 6 hours to figure out the
+// AM/PM part but I DID IT!!!
+// ============================================
+function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var ampm = "AM";
+    if (hours >= 12) ampm = "PM";
+    if (hours > 12) hours = hours - 12;
+    if (hours == 0) hours = 12;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+    var timeStr = hours + ":" + minutes + ":" + seconds + " " + ampm;
+    if (document.getElementById("liveclock")) {
+        document.getElementById("liveclock").innerHTML = "<font face='Courier New' color='#00FF00' size='5'><b>" + timeStr + "</b></font>";
+    }
+    setTimeout("updateClock()", 1000);
+}
+
+// ============================================
+// SECRET TRADING ALGORITHMS SECTION
+// Password: blockchain
+// (dont tell anyone the password LOL)
+// especially not my ex boyfriend craig
+// ============================================
+function checkPassword() {
+    var pw = prompt("ACCESS RESTRICTED!!!\n\n!!! DANGER ZONE !!!\n\nThis section contains Firestar Digital's\nULTRA SECRET PROPRIETARY TRADING ALGORITHMS\nthat are worth MILLIONS OF DOLLARS!!!\n\nEnter the password to continue:\n\n(hint: its a type of chain but for computers)", "");
+    if (pw == null) {
+        return;
+    }
+    if (pw.toLowerCase() == "blockchain") {
+        if (document.getElementById("secretSection")) {
+            document.getElementById("secretSection").style.display = "";
+        }
+        alert("ACCESS GRANTED!!!\n\nOMG you figured it out!!!\nWelcome to the inner sanctum!!!\n\nDont tell ANYONE about this\nespecially not Craig from Geocities/WallStreet/2847\nhe already tried to copy my page TWICE");
+    } else {
+        alert("WRONG PASSWORD!!!\n\nHAHAHA nice try!!!\n\nThis incident has been logged\nand reported to the FBI!!!\n\n(ok not really but I AM writing\nyour IP address on a sticky note)\n\n(ok I dont actually know how to\nget your IP address but STILL)");
+    }
+}
+
+// ============================================
+// STATUS BLINKER for validator
+// ============================================
+function blinkDot() {
+    var dot = document.getElementById("statusDot");
+    if (dot) {
+        if (dot.style.visibility == "hidden") {
+            dot.style.visibility = "visible";
+        } else {
+            dot.style.visibility = "hidden";
+        }
+    }
+    setTimeout("blinkDot()", 500);
+}
+
+// ============================================
+// FALLING GOLD COINS EFFECT
+// Like the snow script but with $$$!!!
+// I call this MAKING IT RAIN!!!!
+// ============================================
+var coinSymbols = new Array("$", "$", "$", "+", "*", "$", "$", "$");
+var maxCoins = 40;
+var coinParts = new Array();
+var coinY = new Array();
+var coinX = new Array();
+var coinSpeed = new Array();
+var coinDrift = new Array();
+
+function initCoins() {
+    for (var i = 0; i < maxCoins; i++) {
+        var c = document.createElement("div");
+        c.style.position = "absolute";
+        c.style.zIndex = "9998";
+        c.style.fontSize = (14 + Math.floor(Math.random() * 20)) + "px";
+        c.style.fontWeight = "bold";
+        c.innerHTML = "<font color='#FFD700'>" + coinSymbols[Math.floor(Math.random() * coinSymbols.length)] + "</font>";
+        c.style.left = Math.floor(Math.random() * 800) + "px";
+        c.style.top = "-20px";
+        document.body.appendChild(c);
+        coinParts[i] = c;
+        coinY[i] = -20 - Math.floor(Math.random() * 400);
+        coinX[i] = Math.floor(Math.random() * 800);
+        coinSpeed[i] = 1 + Math.random() * 3;
+        coinDrift[i] = (Math.random() - 0.5) * 3;
+    }
+}
+
+function animateCoins() {
+    var pageH = document.body.scrollHeight;
+    if (pageH < 600) pageH = 600;
+    for (var i = 0; i < maxCoins; i++) {
+        coinY[i] = coinY[i] + coinSpeed[i];
+        coinX[i] = coinX[i] + Math.sin(coinY[i] / 40) * coinDrift[i];
+        if (coinY[i] > pageH) {
+            coinY[i] = -20;
+            coinX[i] = Math.floor(Math.random() * 800);
+        }
+        coinParts[i].style.top = coinY[i] + "px";
+        coinParts[i].style.left = coinX[i] + "px";
+    }
+    setTimeout("animateCoins()", 40);
+}
+
+// ============================================
+// STATUS BAR SCROLLING TEXT
+// ============================================
+var statusMsg = "    $$$ Welcome to Amber's Firestar Digital!!! $$$ We are LITERALLY the best trading infrastructure company $$$ Canton Blockchain Validators $$$ FX Trading $$$ Precious Metals (GOLD!!!) $$$ Digital Assets $$$ VARA Licensed Partner $$$ Dubai $$$ Sign the Guestbook or else!!! $$$ firestar.digital $$$ Amber is a genius $$$ DONT STEAL MY HTML $$$    ";
+var statusPos = 0;
+function scrollStatus() {
+    window.status = statusMsg.substring(statusPos) + statusMsg.substring(0, statusPos);
+    statusPos++;
+    if (statusPos >= statusMsg.length) statusPos = 0;
+    setTimeout("scrollStatus()", 120);
+}
+
+// ============================================
+// DAYS COUNTER - how long this page has been up
+// ============================================
+function getDaysOnline() {
+    var launchDate = new Date(1998, 2, 14);
+    var today = new Date();
+    var diff = today.getTime() - launchDate.getTime();
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    if (document.getElementById("daysOnline")) {
+        document.getElementById("daysOnline").innerHTML = "<font face='Courier New' color='#FFFF00' size='4'><b>" + days + "</b></font>";
+    }
+}
+
+// ============================================
+// ONLOAD - start everything up!!
+// ============================================
+function startPage() {
+    alert("~*~*~* WELCOME TO FIRESTAR DIGITAL *~*~*~\n\nAmber's Trading Infrastructure Paradise!!!\n\n>>> Turn on your speakers for the MIDI!! <<<\n>>> Best viewed in Netscape Navigator 4.0 <<<\n>>> at 800x600 with 16-bit color <<<\n\nP.S. if the page looks weird try\nmaking your browser window bigger\nI designed it at 800x600 on my\nGateway 2000 computer LOL\n\nENJOY YOUR STAY!!! SIGN THE GUESTBOOK!!!");
+    initBgStars();
+    animateStars();
+    shootingStar();
+    initEcho();
+    doEcho();
+    initSparkles();
+    doSparkles();
+    updateClock();
+    blinkDot();
+    initCoins();
+    animateCoins();
+    scrollStatus();
+    getDaysOnline();
+}
+//-->
+</script>
+<style>
+<!--
+* { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FFD700' stroke='%23DAA520' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23DAA520' stroke-width='1'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-weight='bold' font-family='serif' fill='%23B8860B'%3E%24%3C/text%3E%3C/svg%3E") 16 16, auto; }
+a, a * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FFD700' stroke='%23DAA520' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23DAA520' stroke-width='1'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-weight='bold' font-family='serif' fill='%23B8860B'%3E%24%3C/text%3E%3C/svg%3E") 16 16, pointer; }
+-->
+</style>
+</head>
+
+<body bgcolor="#000011" text="#00FF00" link="#00FFFF" vlink="#FF00FF" alink="#FF0000" background="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23000022'/%3E%3Ccircle cx='15' cy='12' r='1.2' fill='%23FFFFFF' opacity='0.8'/%3E%3Ccircle cx='67' cy='34' r='0.6' fill='%23FFFFCC' opacity='0.5'/%3E%3Ccircle cx='134' cy='8' r='0.8' fill='%23FFFFFF' opacity='0.6'/%3E%3Ccircle cx='178' cy='45' r='1.0' fill='%23CCCCFF' opacity='0.7'/%3E%3Ccircle cx='45' cy='78' r='0.5' fill='%23FFFFCC' opacity='0.4'/%3E%3Ccircle cx='98' cy='62' r='1.5' fill='%23FFFFFF' opacity='0.9'/%3E%3Ccircle cx='156' cy='89' r='0.7' fill='%23FFD700' opacity='0.5'/%3E%3Ccircle cx='23' cy='123' r='0.9' fill='%23FFFFFF' opacity='0.6'/%3E%3Ccircle cx='82' cy='108' r='0.4' fill='%23CCCCFF' opacity='0.3'/%3E%3Ccircle cx='120' cy='134' r='1.1' fill='%23FFFFCC' opacity='0.7'/%3E%3Ccircle cx='170' cy='120' r='0.6' fill='%23FFFFFF' opacity='0.5'/%3E%3Ccircle cx='50' cy='156' r='0.8' fill='%23FFD700' opacity='0.6'/%3E%3Ccircle cx='140' cy='167' r='1.3' fill='%23FFFFFF' opacity='0.8'/%3E%3Ccircle cx='8' cy='178' r='0.5' fill='%23CCCCFF' opacity='0.4'/%3E%3Ccircle cx='188' cy='172' r='0.7' fill='%23FFFFCC' opacity='0.5'/%3E%3Ccircle cx='105' cy='190' r='0.9' fill='%23FFFFFF' opacity='0.6'/%3E%3Ccircle cx='60' cy='195' r='0.4' fill='%23FFD700' opacity='0.3'/%3E%3Ccircle cx='30' cy='50' r='2' fill='%23334' opacity='0.15'/%3E%3Ccircle cx='160' cy='140' r='3' fill='%23224' opacity='0.1'/%3E%3C/svg%3E" onload="startPage()">
+
+<!-- ======================================== -->
+<!-- Firestar Digital                         -->
+<!-- Amber's AMAZING trading page!!!          -->
+<!-- Last updated: March 14th, 1998 at 4:47am -->
+<!-- Made with Notepad on my Gateway 2000     -->
+<!-- while listening to Spice Girls on repeat -->
+<!-- ======================================== -->
+
+<center>
+
+<br>
+
+<!-- SPARKLE GIF ROW -->
+<img src="https://blob.gifcities.org/gifcities/4HVHH7B3KEFTKDAYM7XBBUU4Z4USJ4QZ.gif" alt="*" width="50" height="50">
+<img src="https://blob.gifcities.org/gifcities/5TZQX2ODY2WJBEXXRF3PZYYIFVMS3MU4.gif" alt="*" width="50" height="50">
+<img src="https://blob.gifcities.org/gifcities/CJIEUZFZSTRSPUMF57AOSTDGKKUXYB6H.gif" alt="*" width="50" height="50">
+<img src="https://blob.gifcities.org/gifcities/DSB6NSUDHALJR5PD5QU6AF22ZHD37DGB.gif" alt="*" width="50" height="50">
+<img src="https://blob.gifcities.org/gifcities/4HVHH7B3KEFTKDAYM7XBBUU4Z4USJ4QZ.gif" alt="*" width="50" height="50">
+<img src="https://blob.gifcities.org/gifcities/5TZQX2ODY2WJBEXXRF3PZYYIFVMS3MU4.gif" alt="*" width="50" height="50">
+<img src="https://blob.gifcities.org/gifcities/CJIEUZFZSTRSPUMF57AOSTDGKKUXYB6H.gif" alt="*" width="50" height="50">
+<img src="https://blob.gifcities.org/gifcities/DSB6NSUDHALJR5PD5QU6AF22ZHD37DGB.gif" alt="*" width="50" height="50">
+
+<br><br>
+
+<!-- ======================================== -->
+<!-- THE BIG WELCOME BANNER TABLE             -->
+<!-- ======================================== -->
+<table width="600" border="5" bordercolor="#C9A84C" cellpadding="15" cellspacing="0" bgcolor="#000066">
+<tr>
+<td align="center">
+
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="3">~*~*~*~ &#9733; &#9733; &#9733; Welcome to &#9733; &#9733; &#9733; ~*~*~*~</font>
+<br><br>
+<!-- FIRE GIF + TITLE + FIRE GIF - HUGE FIRE!!! -->
+<img src="https://blob.gifcities.org/gifcities/4ZWHJUWAOBFM56J444WMIILMG7ZMVOP7.gif" alt="FIRE" width="120" height="120" align="middle">
+<img src="https://blob.gifcities.org/gifcities/EGV3BAYR6OK3X63J4CBSJADOLYW4WGAN.gif" alt="FIRE" width="100" height="100" align="middle">
+<img src="https://blob.gifcities.org/gifcities/H2LWRZATSWRBEMGOTVQRYW4UCSBDBOOD.gif" alt="FIRE" width="90" height="90" align="middle">
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FF0000" size="7"><b><i>&#9733;&#9733;&#9733; FIRESTAR DIGITAL &#9733;&#9733;&#9733;</i></b></font>
+<br>
+<img src="https://blob.gifcities.org/gifcities/H2LWRZATSWRBEMGOTVQRYW4UCSBDBOOD.gif" alt="FIRE" width="90" height="90" align="middle">
+<img src="https://blob.gifcities.org/gifcities/EGV3BAYR6OK3X63J4CBSJADOLYW4WGAN.gif" alt="FIRE" width="100" height="100" align="middle">
+<img src="https://blob.gifcities.org/gifcities/4ZWHJUWAOBFM56J444WMIILMG7ZMVOP7.gif" alt="FIRE" width="120" height="120" align="middle">
+<br>
+<font face="Georgia, Times New Roman, serif" color="#C9A84C" size="5"><b><i>Trading Infrastructure for the Future!!!</i></b></font>
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FF69B4" size="4"><b><i>~*~ Founded by AMBER ~*~ the Trading QUEEN ~*~</i></b></font>
+<br><br>
+<img src="https://blob.gifcities.org/gifcities/3VTBFEMOXWXUH3PJYVKNKN4X4DLRL6FO.gif" alt="NEW!" width="80" height="35">
+<img src="https://blob.gifcities.org/gifcities/BSCLWF2NA7VIOLNBHZ6APAYT674XMEZV.gif" alt="NEW!" width="80" height="35">
+<font face="Georgia, Times New Roman, serif" color="#FFFF00" size="3"><b> Canton Blockchain Validators!! </b></font>
+<img src="https://blob.gifcities.org/gifcities/BSCLWF2NA7VIOLNBHZ6APAYT674XMEZV.gif" alt="NEW!" width="80" height="35">
+<img src="https://blob.gifcities.org/gifcities/3VTBFEMOXWXUH3PJYVKNKN4X4DLRL6FO.gif" alt="NEW!" width="80" height="35">
+<br><br>
+
+<!-- MARQUEE 1 - the classic -->
+<marquee behavior="scroll" direction="left" scrollamount="4" bgcolor="#000033">
+<font face="Georgia, Times New Roman, serif" color="#00FF00" size="3">
+&nbsp; <img src="https://blob.gifcities.org/gifcities/7YOVURK4KH6EHZD7QZYS32556WJSNETA.gif" alt="$" width="40" height="40"> FX Trading <img src="https://blob.gifcities.org/gifcities/7YOVURK4KH6EHZD7QZYS32556WJSNETA.gif" alt="$" width="40" height="40"> Precious Metals <img src="https://blob.gifcities.org/gifcities/7YOVURK4KH6EHZD7QZYS32556WJSNETA.gif" alt="$" width="40" height="40"> Digital Assets <img src="https://blob.gifcities.org/gifcities/7YOVURK4KH6EHZD7QZYS32556WJSNETA.gif" alt="$" width="40" height="40"> Canton Validators <img src="https://blob.gifcities.org/gifcities/7YOVURK4KH6EHZD7QZYS32556WJSNETA.gif" alt="$" width="40" height="40"> Settlement <img src="https://blob.gifcities.org/gifcities/7YOVURK4KH6EHZD7QZYS32556WJSNETA.gif" alt="$" width="40" height="40"> VARA Licensed <img src="https://blob.gifcities.org/gifcities/7YOVURK4KH6EHZD7QZYS32556WJSNETA.gif" alt="$" width="40" height="40"> Dubai <img src="https://blob.gifcities.org/gifcities/7YOVURK4KH6EHZD7QZYS32556WJSNETA.gif" alt="$" width="40" height="40"> &nbsp;
+</font>
+</marquee>
+
+<!-- MARQUEE 2 - going the OTHER direction!! -->
+<marquee behavior="scroll" direction="right" scrollamount="3" bgcolor="#000044">
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="3">
+<img src="https://blob.gifcities.org/gifcities/AHQ6INCZ745N4JZNTMBIHT6AB3HHLDGG.gif" alt="$$$" width="40" height="40"> GOLD <img src="https://blob.gifcities.org/gifcities/AHQ6INCZ745N4JZNTMBIHT6AB3HHLDGG.gif" alt="$$$" width="40" height="40"> MONEY <img src="https://blob.gifcities.org/gifcities/AHQ6INCZ745N4JZNTMBIHT6AB3HHLDGG.gif" alt="$$$" width="40" height="40"> GOLD <img src="https://blob.gifcities.org/gifcities/AHQ6INCZ745N4JZNTMBIHT6AB3HHLDGG.gif" alt="$$$" width="40" height="40"> MONEY <img src="https://blob.gifcities.org/gifcities/AHQ6INCZ745N4JZNTMBIHT6AB3HHLDGG.gif" alt="$$$" width="40" height="40"> GOLD <img src="https://blob.gifcities.org/gifcities/AHQ6INCZ745N4JZNTMBIHT6AB3HHLDGG.gif" alt="$$$" width="40" height="40"> MONEY <img src="https://blob.gifcities.org/gifcities/AHQ6INCZ745N4JZNTMBIHT6AB3HHLDGG.gif" alt="$$$" width="40" height="40">
+</font>
+</marquee>
+
+<!-- MARQUEE 3 - WHY NOT A THIRD ONE -->
+<marquee behavior="alternate" scrollamount="2" bgcolor="#220000">
+<font face="Georgia, Times New Roman, serif" color="#FF0000" size="2"><b>
+<blink>!!! AMBER IS THE #1 TRADING INFRASTRUCTURE GIRL IN THE MIDDLE EAST !!! DONT @ ME !!!</blink>
+</b></font>
+</marquee>
+
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FFFF00" size="4"><b><i>~ The COOLEST Trading Page on the ENTIRE World Wide Web!! ~</i></b></font>
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FF69B4" size="3"><b><i>~ If you disagree you are WRONG and also probably jealous ~</i></b></font>
+<br><br>
+<font face="Times New Roman" color="#00FF00" size="3">
+You are visitor number: <font color="#FF0000" size="6"><b>012,847</b></font> !!! WOW thats a LOT of people!!!
+</font>
+<br><br>
+
+<!-- BIG CHAIN DIVIDER -->
+<img src="https://blob.gifcities.org/gifcities/A5LHMIDZN54JQYJPAIGOYXN4DVAECVJR.gif" alt="--------" width="550">
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- ======================================== -->
+<!-- MIDI PLAYER                               -->
+<!-- ======================================== -->
+<table width="600" border="2" bordercolor="#FF69B4" cellpadding="8" cellspacing="0" bgcolor="#000044">
+<tr>
+<td align="center">
+<!-- Background music would go here but this is 2026 lol -->
+<font face="Courier New" color="#00FF00" size="3">
+<b>&#9835; &#9835; &#9835; NOW PLAYING: spicegirls_wannabe.mid &#9835; &#9835; &#9835;</b>
+<br>
+<font color="#FF69B4" size="2">[Turn your speakers ALL THE WAY UP!!!]</font>
+<br>
+<font color="#FFFF00" size="1">[If you cant hear it try refreshing. If you STILL cant hear it your computer is broken not my fault!!!]</font>
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- ======================================== -->
+<!-- LIVE CLOCK                                -->
+<!-- ======================================== -->
+<table width="350" border="3" bordercolor="#00FF00" cellpadding="8" cellspacing="0" bgcolor="#001100">
+<tr>
+<td align="center">
+<font face="Georgia, Times New Roman, serif" color="#00FF00" size="3"><b>Current Time:</b></font>
+<br>
+<span id="liveclock"><font face="Courier New" color="#00FF00" size="5"><b>Loading...</b></font></span>
+<br>
+<font face="Georgia, Times New Roman, serif" color="#00FF00" size="2">
+This page has been online for <span id="daysOnline"><font face="Courier New" color="#FFFF00" size="4"><b>???</b></font></span> days!!!
+<br><font color="#FFFF00" size="1">(thats a REALLY long time omg)</font>
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- BIG DIVIDER -->
+<img src="https://blob.gifcities.org/gifcities/B2TIOYJMZ6NV4YTWEKKSJZVBFY6AQ6MF.gif" alt="--------" width="550">
+<br><br>
+
+<!-- ======================================== -->
+<!-- NAVIGATION TABLE                          -->
+<!-- ======================================== -->
+<table width="600" border="2" cellpadding="3" cellspacing="2" bordercolor="#FFD700">
+<tr>
+<td bgcolor="#333399" align="center" width="100"><a href="#about"><font face="Georgia, Times New Roman, serif" color="#FFFF00" size="2"><b>Home</b></font></a></td>
+<td bgcolor="#333399" align="center" width="100"><a href="#about"><font face="Georgia, Times New Roman, serif" color="#FFFF00" size="2"><b>About Me!!!</b></font></a></td>
+<td bgcolor="#333399" align="center" width="100"><a href="#canton"><font face="Georgia, Times New Roman, serif" color="#FFFF00" size="2"><b>Canton!!!</b></font></a></td>
+<td bgcolor="#333399" align="center" width="100"><a href="#services"><font face="Georgia, Times New Roman, serif" color="#FFFF00" size="2"><b>Services</b></font></a></td>
+<td bgcolor="#333399" align="center" width="100"><a href="#links"><font face="Georgia, Times New Roman, serif" color="#FFFF00" size="2"><b>Links</b></font></a></td>
+<td bgcolor="#333399" align="center" width="100"><a href="#guestbook"><font face="Georgia, Times New Roman, serif" color="#FFFF00" size="2"><b>Guestbook!!!</b></font></a></td>
+</tr>
+</table>
+
+<br>
+
+<!-- ======================================== -->
+<!-- MAIN CONTENT - TWO COLUMN TABLE           -->
+<!-- ======================================== -->
+<table width="600" border="0" cellpadding="5" cellspacing="0">
+<tr>
+
+<!-- LEFT COLUMN -->
+<td width="420" valign="top">
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- ABOUT AMBER!!!                  -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<a name="about"></a>
+<table width="100%" border="2" bordercolor="#C9A84C" cellpadding="10" cellspacing="0" bgcolor="#000044">
+<tr>
+<td>
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="5"><b><i>
+<img src="https://blob.gifcities.org/gifcities/GWT4IVKJ6BX6DRGP2X7I7JJ5T4B4U5OQ.gif" alt="*" width="60" height="60">
+About Amber &amp; Firestar Digital
+<img src="https://blob.gifcities.org/gifcities/GWT4IVKJ6BX6DRGP2X7I7JJ5T4B4U5OQ.gif" alt="*" width="60" height="60">
+</i></b></font>
+<br>
+<img src="https://blob.gifcities.org/gifcities/ECB5ZXT2XJMP5GWB3QDDL4NJRXD53JHQ.gif" alt="--------" width="380">
+<br><br>
+
+<font face="Times New Roman" color="#00FF00" size="3">
+<img src="https://blob.gifcities.org/gifcities/B23523BMU3MHREA2KSF47F7VT24BYVPM.gif" alt="$$$" width="60" height="60" align="left">
+Hello!!! I'm <font color="#FF69B4" size="4"><b>AMBER</b></font>, founder and CEO of <font color="#FF0000" size="4"><b>FIRESTAR DIGITAL</b></font> - the COOLEST trading infrastructure company in Dubai and honestly the WHOLE ENTIRE WORLD!!! We do <font color="#00FFFF"><b>FX Trading</b></font>, <font color="#FFD700"><b>Precious Metals</b></font> (GOLD!!!), <font color="#FF00FF"><b>Digital Assets</b></font>, and <font color="#FFFF00"><b>Canton Blockchain Validators</b></font>. <font color="#FF0000"><b>VARA Licensed</b></font> btw which is a HUGE deal!!!
+<br><br>
+Email: <a href="mailto:xXfirestargirl98Xx@hotmail.com"><font color="#00FFFF" size="3"><b>xXfirestargirl98Xx@hotmail.com</b></font></a> | AIM: <font color="#FF00FF" size="3"><b>xXFirestarAmberXx</b></font>
+<br><br>
+</font>
+
+<table width="100%" border="1" bordercolor="#FF69B4" cellpadding="5" cellspacing="0" bgcolor="#110022">
+<tr>
+<td width="80" valign="top">
+<img src="https://blob.gifcities.org/gifcities/5HO3PUROZK6MDMM2SXGXGUXBIZY6UEIM.gif" alt="[computer]" width="70" height="70">
+<br>
+<img src="https://blob.gifcities.org/gifcities/7SVPWNF4H7EQPEBFFZA6YKUZGS67QLMA.gif" alt="[computer]" width="70" height="70">
+</td>
+<td valign="top">
+<font face="Georgia, Times New Roman, serif" color="#FF69B4" size="3"><b>Quick Facts About AMBER:</b></font>
+<br>
+<font face="Times New Roman" color="#FFFFFF" size="2">
+<br>&#9733; Location: Dubai, UAE
+<br>&#9733; Star Sign: Aries <font color="#FF0000">(FIRE sign!! get it?? FIRE-star!!!)</font>
+<br>&#9733; AIM: xXFirestarAmberXx | ICQ#: 28491057
+<br>&#9733; Hobbies: Trading, HTML, gold charts at 3am, Beanie Babies
+<br>&#9733; Current Mood: <font color="#00FF00"><b>BULLISH</b></font> (always)
+<br>&#9733; Status: Married to the MARKET (and my cat Mr. Satoshi)
+</font>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- MEGA SPARKLE DIVIDER -->
+<center>
+<img src="https://blob.gifcities.org/gifcities/4HVHH7B3KEFTKDAYM7XBBUU4Z4USJ4QZ.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/5TZQX2ODY2WJBEXXRF3PZYYIFVMS3MU4.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/CJIEUZFZSTRSPUMF57AOSTDGKKUXYB6H.gif" alt="*" width="40" height="40">
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="3"><b> ~*~$$$~*~ </b></font>
+<img src="https://blob.gifcities.org/gifcities/CJIEUZFZSTRSPUMF57AOSTDGKKUXYB6H.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/5TZQX2ODY2WJBEXXRF3PZYYIFVMS3MU4.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/4HVHH7B3KEFTKDAYM7XBBUU4Z4USJ4QZ.gif" alt="*" width="40" height="40">
+</center>
+
+<br>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- CANTON BLOCKCHAIN SECTION       -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<a name="canton"></a>
+<table width="100%" border="3" bordercolor="#00FF00" cellpadding="10" cellspacing="0" bgcolor="#003300">
+<tr>
+<td>
+<font face="Georgia, Times New Roman, serif" color="#00FF00" size="5"><b><i>
+<img src="https://blob.gifcities.org/gifcities/7JCDRPP6PPIM66TMENJY7VG4RTDXVKFY.gif" alt="[tech]" width="70" height="70">
+Canton Blockchain!!!
+<img src="https://blob.gifcities.org/gifcities/6SZM53KUUTNZGQDWOE2X2QUSLJMEGFGU.gif" alt="[tech]" width="70" height="70">
+</i></b></font>
+<br>
+<img src="https://blob.gifcities.org/gifcities/GEBBHHAPXV63GEHL3AKX637HGEL3R6DV.gif" alt="--------" width="380">
+<br><br>
+
+<font face="Times New Roman" color="#00FF00" size="3">
+Canton is going to COMPLETELY REVOLUTIONIZE financial markets!!! If you dont know about it you are SLEEPING!!!
+</font>
+
+<table width="100%" border="2" bordercolor="#006600" cellpadding="8" cellspacing="3" bgcolor="#002200">
+<tr>
+<td align="center" bgcolor="#004400">
+<font face="Courier New" color="#00FF00" size="3"><b>*** CANTON FACT SHEET ***</b></font>
+</td>
+</tr>
+<tr>
+<td>
+<font face="Courier New" color="#00FF00" size="2">
+<img src="https://blob.gifcities.org/gifcities/3VTBFEMOXWXUH3PJYVKNKN4X4DLRL6FO.gif" alt="NEW!" width="60" height="25"> <font color="#FFFF00" size="3"><b>Privacy-First:</b></font> Your trades are YOUR business!! Canton keeps it PRIVATE!!!
+<br><br>
+<img src="https://blob.gifcities.org/gifcities/3VTBFEMOXWXUH3PJYVKNKN4X4DLRL6FO.gif" alt="NEW!" width="60" height="25"> <font color="#FFFF00" size="3"><b>Daml Smart Contracts:</b></font> Its like Java but for MONEY!!! I wrote my first one last week and SCREAMED!!!
+<br><br>
+<img src="https://blob.gifcities.org/gifcities/3VTBFEMOXWXUH3PJYVKNKN4X4DLRL6FO.gif" alt="NEW!" width="60" height="25"> <font color="#FFFF00" size="3"><b>Atomic Settlement:</b></font> T+0 baby!!! While other companies do paperwork we count PROFITS!!!
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<font face="Times New Roman" color="#00FF00" size="3">
+We run our OWN validator node in Dubai!!! FIRST in the Middle East!!! If you are not impressed I dont know what to tell you LOL
+</font>
+
+<br><br>
+
+<!-- VALIDATOR STATUS -->
+<table width="100%" border="3" bordercolor="#00FF00" cellpadding="8" cellspacing="0" bgcolor="#001100">
+<tr>
+<td align="center" bgcolor="#002200">
+<font face="Courier New" color="#00FF00" size="4"><b>.:*:. LIVE VALIDATOR STATUS .:*:.</b></font>
+</td>
+</tr>
+<tr>
+<td>
+<font face="Courier New" color="#00FF00" size="2">
+<pre>
+   ______________________________________
+  |                                      |
+  |   FIRESTAR VALIDATOR NODE v2.1       |
+  |   Operator: AMBER (thats me!!!)      |
+  |   Status: <font color="#00FF00"><b><span id="statusDot">&#9679;</span> ONLINE</b></font>                 |
+  |   Uptime: 99.97%                     |
+  |   Location: Dubai, UAE               |
+  |   Blocks Validated: 847,291          |
+  |   Network: Canton Global Sync        |
+  |   Vibes: IMMACULATE                  |
+  |______________________________________|
+
+</pre>
+</font>
+<center>
+<font face="Courier New" color="#FFFF00" size="2">[The green dot blinks because its ALIVE!!!]</font>
+</center>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- BIG DIVIDER -->
+<img src="https://blob.gifcities.org/gifcities/A5LHMIDZN54JQYJPAIGOYXN4DVAECVJR.gif" alt="--------" width="550">
+
+<br><br>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- SERVICES                        -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<a name="services"></a>
+<table width="100%" border="2" bordercolor="#C9A84C" cellpadding="10" cellspacing="0" bgcolor="#330033">
+<tr>
+<td>
+<font face="Georgia, Times New Roman, serif" color="#FF00FF" size="5"><b><i>
+<img src="https://blob.gifcities.org/gifcities/B23523BMU3MHREA2KSF47F7VT24BYVPM.gif" alt="$$$" width="70" height="70">
+Our AMAZING Services!!!
+<img src="https://blob.gifcities.org/gifcities/FD34DR5CQAHEL4A6WSBRABODHOICHW6O.gif" alt="$$$" width="70" height="70">
+</i></b></font>
+<br>
+<img src="https://blob.gifcities.org/gifcities/ECB5ZXT2XJMP5GWB3QDDL4NJRXD53JHQ.gif" alt="--------" width="380">
+<br><br>
+
+<table width="100%" border="2" bordercolor="#660066" cellpadding="10" cellspacing="4">
+<tr>
+<td width="50%" bgcolor="#220022" valign="top">
+<center>
+<img src="https://blob.gifcities.org/gifcities/FD34DR5CQAHEL4A6WSBRABODHOICHW6O.gif" alt="$$$" width="80" height="80">
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="4"><b><i>FX Trading</i></b></font>
+</center>
+<br>
+<font face="Times New Roman" color="#FFFFFF" size="2">
+ALL the major pairs!!! Spreads are TINY, execution is LIGHTNING FAST!!! Other brokers could NEVER!!!
+</font>
+</td>
+<td width="50%" bgcolor="#220022" valign="top">
+<center>
+<img src="https://blob.gifcities.org/gifcities/XPKTKBIZ2W5KHOETNSXYZOG6JLNGKQF6.gif" alt="GOLD" width="80" height="80">
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="4"><b><i>GOLD!!!</i></b></font>
+</center>
+<br>
+<font face="Times New Roman" color="#FFFFFF" size="2">
+GOLD GOLD GOLD!!! Physical, paper, ETFs, futures, options, GOLD EVERYTHING!!! Named my cat after it (ok Mr. Satoshi isnt gold related but he IS golden colored!!!)
+</font>
+</td>
+</tr>
+<tr>
+<td width="50%" bgcolor="#220022" valign="top">
+<center>
+<img src="https://blob.gifcities.org/gifcities/CQZDMFOXA44PKXFTDUS4SQLTO3FD2RZM.gif" alt="[tech]" width="80" height="80">
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="4"><b><i>Digital Assets</i></b></font>
+</center>
+<br>
+<font face="Times New Roman" color="#FFFFFF" size="2">
+VARA licensed digital asset infrastructure!!! Not like those SKETCHY companies (you know who you are CRAIG)
+</font>
+</td>
+<td width="50%" bgcolor="#220022" valign="top">
+<center>
+<img src="https://blob.gifcities.org/gifcities/PDR5PZSJ44KRXNR7OXEYQR2ECS6K4ZIB.gif" alt="[tech]" width="80" height="80">
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="4"><b><i>Settlement</i></b></font>
+</center>
+<br>
+<font face="Times New Roman" color="#FFFFFF" size="2">
+Atomic settlement on Canton!!! T+0!!! Already settled while you're still filling out paperwork!!! Rachel is my favorite btw!!!
+</font>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- UNDER CONSTRUCTION - HUGE!!!    -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<table width="100%" border="3" bordercolor="#FFFF00" cellpadding="15" cellspacing="0" bgcolor="#333300">
+<tr>
+<td align="center">
+<img src="https://blob.gifcities.org/gifcities/5SAYDEDXUAM7XUK5PSV4HZSGDHVNXS6R.gif" alt="UNDER CONSTRUCTION" width="200">
+<img src="https://blob.gifcities.org/gifcities/6DXWFI7ZFVSKUHWTEWOJHT3JPC4U6JIJ.gif" alt="UNDER CONSTRUCTION" width="200">
+<br><br>
+<font face="Georgia, Times New Roman, serif" color="#FFFF00" size="5"><b><i><blink>!!! UNDER CONSTRUCTION !!!</blink></i></b></font>
+<br>
+<font face="Times New Roman" color="#FFFF00" size="3">
+Working on LIVE PRICE CHARTS and a section about Mr. Satoshi (my cat)!!! Almost done since November 1997!!!
+</font>
+<br><br>
+<img src="https://blob.gifcities.org/gifcities/AETOJO542NSXFY7S2HQDPPBQ2LLT7NGO.gif" alt="UNDER CONSTRUCTION" width="200">
+<img src="https://blob.gifcities.org/gifcities/E47ZJBID57WBH5ZXYB7SL2OCE22C5HH7.gif" alt="UNDER CONSTRUCTION" width="200">
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- SECRET SECTION                  -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<table width="100%" border="3" bordercolor="#FF0000" cellpadding="10" cellspacing="0" bgcolor="#330000">
+<tr>
+<td align="center">
+<img src="https://blob.gifcities.org/gifcities/N7S3GUIK3IWUZ2UGXZGBSHIFMPEZLPC2.gif" alt="!!!" width="80" height="80">
+<font face="Courier New" color="#FF0000" size="6"><b>&#9760; TOP SECRET &#9760;</b></font>
+<img src="https://blob.gifcities.org/gifcities/N7S3GUIK3IWUZ2UGXZGBSHIFMPEZLPC2.gif" alt="!!!" width="80" height="80">
+<br><br>
+<font face="Courier New" color="#FF0000" size="3">
+<blink>WARNING: CLASSIFIED INFORMATION AHEAD!!!</blink>
+<br>
+This section contains Firestar Digital's ULTRA SECRET
+<br>
+PROPRIETARY TRADING ALGORITHMS worth MILLIONS!!!
+</font>
+<br><br>
+<a href="javascript:checkPassword()"><font face="Georgia, Times New Roman, serif" color="#FF0000" size="4"><b>[ &#9760; CLICK HERE IF YOU DARE &#9760; - PASSWORD REQUIRED ]</b></font></a>
+<br><br>
+
+<div id="secretSection" style="display:none">
+<table width="100%" border="2" bordercolor="#FF0000" cellpadding="10" cellspacing="0" bgcolor="#1a0000">
+<tr>
+<td>
+<font face="Courier New" color="#FF0000" size="3">
+<b>ACCESS LEVEL: ULTRA CLASSIFIED</b>
+<br>
+<b>AGENT: Amber (codename: GOLDEN GIRL)</b>
+<br>
+<b>CLEARANCE: Maximum Plus Infinity</b>
+<br><br>
+</font>
+<font face="Courier New" color="#00FF00" size="2">
+<pre>
+ALGORITHM v3.7 (codename: GOLDEN DRAGON)
+=========================================
+if gold_price &gt; yesterday  then BUY BUY BUY!!!
+if gold_price &lt; yesterday  then also BUY (its on SALE!!!)
+if gold_price == yesterday  then BELIEVE IN THE GOLD
+
+PROFIT = always yes
+VIBES = immaculate
+CRAIG = still wrong about everything
+
+*100% success rate (in Amber's imagination)
+**ok fine I havent tested it yet
+***BUT I HAVE A GOOD FEELING
+</pre>
+</font>
+<font face="Times New Roman" color="#FFFF00" size="2">
+The REAL secret is Canton atomic settlement - trades execute INSTANTLY!!! Also if you play wannabe.mid backwards during a full moon you can predict the market (need better sound card to prove it)
+<br><br>
+<font color="#FF69B4"><b>P.S. CRAIG from WallStreet/2847 - my marquee tags ARE art</b></font>
+</font>
+</td>
+</tr>
+</table>
+</div>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- AMBER'S CORNER                  -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<table width="100%" border="2" bordercolor="#FF69B4" cellpadding="10" cellspacing="0" bgcolor="#330033">
+<tr>
+<td>
+<font face="Georgia, Times New Roman, serif" color="#FF69B4" size="5"><b><i>
+<img src="https://blob.gifcities.org/gifcities/DSB6NSUDHALJR5PD5QU6AF22ZHD37DGB.gif" alt="*" width="60" height="60">
+Amber's Corner!!!
+<img src="https://blob.gifcities.org/gifcities/WMUDNVDHOTPX6NMLW72YVUASEYEKIDL4.gif" alt="*" width="60" height="60">
+</i></b></font>
+<br>
+<img src="https://blob.gifcities.org/gifcities/A5LHMIDZN54JQYJPAIGOYXN4DVAECVJR.gif" alt="--------" width="380">
+<br><br>
+
+<font face="Times New Roman" color="#FFFFFF" size="3">
+<b>You scrolled ALL the way down!!! REAL ONE!!!</b>
+<br>
+Now playing: <font color="#FF69B4"><b>Wannabe by Spice Girls</b></font> (47th time today)
+<br><br>
+<font color="#FF69B4"><b>What Amber is DOING rn:</b></font>
+</font>
+<ul>
+<font face="Times New Roman" color="#00FF00" size="2">
+<li>Teaching Mr. Satoshi blockchain (he fell asleep on my keyboard and accidentally bought 50 lots EUR/USD. We made $200. He is now Head of Trading.)</li>
+<li>Avoiding Craig's emails about "too many marquees" (YES I NEED 3 CRAIG)</li>
+<li>Eating sushi at 3am watching gold charts</li>
+</font>
+</ul>
+
+<font face="Times New Roman" color="#FFFFFF" size="2">
+<font color="#FFD700" size="3"><b>1999 predictions:</b></font>
+</font>
+<ul>
+<font face="Times New Roman" color="#FFFF00" size="2">
+<li>Gold will hit $500/oz (currently $294 but TRUST ME!!!)</li>
+<li>Y2K will NOT destroy civilization (backed up Beanie Baby spreadsheet just in case)</li>
+<li>Craig will admit my page is better (not holding my breath)</li>
+<li>Mr. Satoshi will learn ICQ (a girl can dream)</li>
+</font>
+</ul>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- GUESTBOOK!!!                    -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<a name="guestbook"></a>
+<table width="100%" border="3" bordercolor="#00FFFF" cellpadding="10" cellspacing="0" bgcolor="#003333">
+<tr>
+<td>
+<font face="Georgia, Times New Roman, serif" color="#00FFFF" size="5"><b><i>
+<img src="https://blob.gifcities.org/gifcities/V2Z5E4J5MJPMJSUNJHEOC75TB4RDDXRB.gif" alt="[guestbook]" width="80" height="80">
+SIGN MY GUESTBOOK!!! PLEASE!!!
+<img src="https://blob.gifcities.org/gifcities/VAYVGZSLN7E64C7XH5MSY5DUXWV7MFXZ.gif" alt="[guestbook]" width="80" height="80">
+</i></b></font>
+<br>
+<img src="https://blob.gifcities.org/gifcities/B2TIOYJMZ6NV4YTWEKKSJZVBFY6AQ6MF.gif" alt="--------" width="380">
+<br><br>
+<font face="Times New Roman" color="#00FFFF" size="3">
+PLEASE sign it!!! Even just write "hi"!!! Recent entries:
+</font>
+<br><br>
+
+<!-- Guestbook Entry 1 -->
+<table width="100%" border="1" bordercolor="#006666" cellpadding="8" cellspacing="0" bgcolor="#002222">
+<tr>
+<td>
+<font face="Courier New" color="#00FFFF" size="2">
+<b>From:</b> CryptoKitty99 (meow_money@aol.com)
+<br><b>Date:</b> March 10, 1998 at 3:22pm
+<br><b>Message:</b> <font color="#FFFFFF">AMBER OMG BEST page on ALL of Geocities!!! THREE marquees!!! QUEEN BEHAVIOR!!! Ur cat is Head of Trading I cant even LOL</font>
+</font>
+</td>
+</tr>
+</table>
+<br>
+
+<!-- Guestbook Entry 2 -->
+<table width="100%" border="1" bordercolor="#006666" cellpadding="8" cellspacing="0" bgcolor="#002222">
+<tr>
+<td>
+<font face="Courier New" color="#00FFFF" size="2">
+<b>From:</b> Ambers_Mom (carol_1955@aol.com)
+<br><b>Date:</b> March 5, 1998 at 7:02pm
+<br><b>Message:</b> <font color="#FFFFFF">Amber sweetie this page looks wonderful!! Your father says blockchain is "probably a fad" but we are proud of you!! Is the cat ok? You said he bought euros? Love, Mom. PS the music is very loud</font>
+</font>
+</td>
+</tr>
+</table>
+<br>
+
+<!-- Guestbook Entry 5 - THE RIVAL -->
+<table width="100%" border="1" bordercolor="#FF0000" cellpadding="8" cellspacing="0" bgcolor="#220000">
+<tr>
+<td>
+<font face="Courier New" color="#FF6600" size="2">
+<b>From:</b> Craig_WallSt (craig2847@geocities.com)
+<br><b>Date:</b> March 3, 1998 at 2:14am
+<br><b>Message:</b> <font color="#FF6600">You dont need three marquee tags. Your "algorithm" is just buying gold no matter what. Thats not an algorithm. Also I did NOT copy your starfield background. --Craig</font>
+<br><br>
+<font color="#FF69B4" size="1"><b>[AMBER'S NOTE: Craig is just JEALOUS because my page has 12,847 visitors and his has like 340. Also he DID copy my starfield background I SAW the source code CRAIG!!!]</b></font>
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+<center>
+<a href="mailto:xXfirestargirl98Xx@hotmail.com?subject=GUESTBOOK ENTRY!!!"><font face="Georgia, Times New Roman, serif" color="#FFFF00" size="4"><b>
+<img src="https://blob.gifcities.org/gifcities/5EOUGOZ66SPHEOBO526T5BMQBJHN4ZPE.gif" alt="[email]" width="80" height="60">
+<img src="https://blob.gifcities.org/gifcities/65F4POMFHXGRFA7XPVJJF5JKYILN57VG.gif" alt="[email]" width="80" height="60">
+<br>
+SIGN IT!!! SIGN IT NOW!!!
+<br>
+<img src="https://blob.gifcities.org/gifcities/65F4POMFHXGRFA7XPVJJF5JKYILN57VG.gif" alt="[email]" width="80" height="60">
+<img src="https://blob.gifcities.org/gifcities/5EOUGOZ66SPHEOBO526T5BMQBJHN4ZPE.gif" alt="[email]" width="80" height="60">
+</b></font></a>
+</center>
+
+</td>
+</tr>
+</table>
+
+</td>
+
+<!-- ======================================== -->
+<!-- RIGHT COLUMN - SIDEBAR                    -->
+<!-- ======================================== -->
+<td width="180" valign="top" bgcolor="#000033">
+
+<!-- UPDATES -->
+<table width="100%" border="2" bordercolor="#FF0000" cellpadding="5" cellspacing="0" bgcolor="#330000">
+<tr>
+<td align="center" bgcolor="#660000">
+<font face="Georgia, Times New Roman, serif" color="#FF0000" size="3"><b>Updates!!!</b></font>
+</td>
+</tr>
+<tr>
+<td>
+<font face="Times New Roman" color="#FF6600" size="2">
+<img src="https://blob.gifcities.org/gifcities/3VTBFEMOXWXUH3PJYVKNKN4X4DLRL6FO.gif" alt="NEW!" width="50" height="22"> <b>3/14/98</b> - THIRD marquee!!!
+<br><br>
+<img src="https://blob.gifcities.org/gifcities/3VTBFEMOXWXUH3PJYVKNKN4X4DLRL6FO.gif" alt="NEW!" width="50" height="22"> <b>3/12/98</b> - Cat traded EUR/USD. Profitable now.
+<br><br>
+<b>3/1/98</b> - GOLD cursor trail!!! $$$
+<br><br>
+<b>2/14/98</b> - PAGE LAUNCHED!!!
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- COOL LINKS -->
+<a name="links"></a>
+<table width="100%" border="2" bordercolor="#00FF00" cellpadding="5" cellspacing="0" bgcolor="#003300">
+<tr>
+<td align="center" bgcolor="#006600">
+<font face="Georgia, Times New Roman, serif" color="#00FF00" size="3"><b>Cool Links!!!</b></font>
+</td>
+</tr>
+<tr>
+<td>
+<font face="Times New Roman" color="#00FF00" size="2">
+<img src="https://blob.gifcities.org/gifcities/2BDK66BWLK42ADEG52TMSEUEDO6IZDTX.gif" alt="[globe]" width="30" height="30"> <a href="http://www.yahoo.com"><font color="#00FFFF">Yahoo!</font></a>
+<br>
+<img src="https://blob.gifcities.org/gifcities/3KM6MPL6QJCV36EATD5G4WBTM67XNG5R.gif" alt="[globe]" width="30" height="30"> <a href="http://www.altavista.com"><font color="#00FFFF">AltaVista</font></a>
+<br>
+<img src="https://blob.gifcities.org/gifcities/2BDK66BWLK42ADEG52TMSEUEDO6IZDTX.gif" alt="[globe]" width="30" height="30"> <a href="http://www.lycos.com"><font color="#00FFFF">Lycos</font></a>
+<br>
+<img src="https://blob.gifcities.org/gifcities/3KM6MPL6QJCV36EATD5G4WBTM67XNG5R.gif" alt="[globe]" width="30" height="30"> <a href="http://www.geocities.com/WallStreet"><font color="#00FFFF">Geocities WallStreet</font></a>
+<br>
+<img src="https://blob.gifcities.org/gifcities/2BDK66BWLK42ADEG52TMSEUEDO6IZDTX.gif" alt="[globe]" width="30" height="30"> <a href="http://www.bloomberg.com"><font color="#00FFFF">Bloomberg</font></a>
+<br>
+<img src="https://blob.gifcities.org/gifcities/3KM6MPL6QJCV36EATD5G4WBTM67XNG5R.gif" alt="[globe]" width="30" height="30"> <a href="http://www.kitco.com"><font color="#00FFFF">Kitco Gold!!!</font></a>
+<br>
+<img src="https://blob.gifcities.org/gifcities/2BDK66BWLK42ADEG52TMSEUEDO6IZDTX.gif" alt="[globe]" width="30" height="30"> <a href="http://www.dynamicdrive.com"><font color="#00FFFF">Dynamic Drive</font></a>
+<br>
+<img src="https://blob.gifcities.org/gifcities/3KM6MPL6QJCV36EATD5G4WBTM67XNG5R.gif" alt="[globe]" width="30" height="30"> <a href="http://www.spicegirls.com"><font color="#FF69B4">Spice Girls!!!</font></a>
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- WEBRING -->
+<table width="100%" border="2" bordercolor="#FF00FF" cellpadding="5" cellspacing="0" bgcolor="#330033">
+<tr>
+<td align="center" bgcolor="#660066">
+<font face="Georgia, Times New Roman, serif" color="#FF00FF" size="2"><b>Webrings</b></font>
+</td>
+</tr>
+<tr>
+<td align="center">
+<font face="Times New Roman" color="#FF00FF" size="2">
+This <b><font color="#FFD700">Trading Queens Ring</font></b> site is owned by <b>Amber</b>
+<br><br>
+[ <a href="#"><font color="#00FFFF">Prev</font></a> | <a href="#"><font color="#00FFFF">Random</font></a> | <a href="#"><font color="#00FFFF">Next</font></a> | <a href="#"><font color="#00FFFF">List</font></a> ]
+<br><br>
+<hr size="1" color="#660066">
+This <b><font color="#00FF00">Dubai Girlboss Tech Ring</font></b> site is owned by <b>Amber</b>
+<br><br>
+[ <a href="#"><font color="#00FFFF">Prev</font></a> | <a href="#"><font color="#00FFFF">Random</font></a> | <a href="#"><font color="#00FFFF">Next</font></a> | <a href="#"><font color="#00FFFF">List</font></a> ]
+<br><br>
+<hr size="1" color="#660066">
+This <b><font color="#FFD700">Gold Enjoyers Ring</font></b> site is owned by <b>Amber</b>
+<br><br>
+[ <a href="#"><font color="#00FFFF">Prev</font></a> | <a href="#"><font color="#00FFFF">Random</font></a> | <a href="#"><font color="#00FFFF">Next</font></a> | <a href="#"><font color="#00FFFF">List</font></a> ]
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- AWARDS -->
+<table width="100%" border="2" bordercolor="#FFD700" cellpadding="5" cellspacing="0" bgcolor="#333300">
+<tr>
+<td align="center" bgcolor="#666600">
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="2"><b>Awards!!!</b></font>
+</td>
+</tr>
+<tr>
+<td align="center">
+<font face="Times New Roman" color="#FFFF00" size="2">
+<img src="https://blob.gifcities.org/gifcities/GRSRKG744DWEHPZO47YMXHRXSEKJILQO.gif" alt="[award]" width="90" height="90">
+<br>
+<b>Cool Site of the Day</b>
+<br><font size="1">(I gave this to myself and I DESERVE it)</font>
+<br><br>
+<img src="https://blob.gifcities.org/gifcities/TMK4JSB6ENQ4BMXRVMR6BSFTUDK4KFJX.gif" alt="[award]" width="90" height="90">
+<br>
+<b>Best Trading Page EVER</b>
+<br><font size="1">(Self-awarded. Better than Craig's "awards")</font>
+<br><br>
+<img src="https://blob.gifcities.org/gifcities/UD3BSOJI5JXU6IC7U66TB5CWK73I5BH3.gif" alt="[award]" width="90" height="90">
+<br>
+<b>HTML Excellence Gold Medal</b>
+<br><font size="1">(Mom said I deserve this one and she is CORRECT)</font>
+<br><br>
+<img src="https://blob.gifcities.org/gifcities/WMUDNVDHOTPX6NMLW72YVUASEYEKIDL4.gif" alt="[award]" width="90" height="90">
+<br>
+<b>Most GIFs Per Page Award</b>
+<br><font size="1">(NEW!! Just awarded myself this one!!!)</font>
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- EMAIL -->
+<table width="100%" border="2" bordercolor="#00FFFF" cellpadding="5" cellspacing="0" bgcolor="#003333">
+<tr>
+<td align="center" bgcolor="#006666">
+<font face="Georgia, Times New Roman, serif" color="#00FFFF" size="2"><b>Email Me!!!</b></font>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="mailto:xXfirestargirl98Xx@hotmail.com">
+<img src="https://blob.gifcities.org/gifcities/65F4POMFHXGRFA7XPVJJF5JKYILN57VG.gif" alt="EMAIL ME" width="100" height="70" border="0">
+</a>
+<br>
+<a href="mailto:xXfirestargirl98Xx@hotmail.com"><font face="Georgia, Times New Roman, serif" color="#00FFFF" size="2"><b>xXfirestargirl98Xx<br>@hotmail.com</b></font></a>
+<br>
+<font face="Times New Roman" color="#FFFFFF" size="1">I reply to ALL emails!! (except Craig's)</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- DISCLAIMER -->
+<table width="100%" border="1" bordercolor="#666666" cellpadding="5" cellspacing="0" bgcolor="#222222">
+<tr>
+<td>
+<font face="Times New Roman" color="#999999" size="1">
+<b>DISCLAIMER:</b> Nothing on this page is financial advice!!! I am just a girl who likes trading and HTML and gold and her cat!!! If you lose money trading that is YOUR fault!!! Please trade responsibly!!! (I should probably follow my own advice here LOL)
+</font>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- ======================================== -->
+<!-- HIT COUNTER                               -->
+<!-- ======================================== -->
+<table width="400" border="3" bordercolor="#C9A84C" cellpadding="8" cellspacing="0" bgcolor="#000000">
+<tr>
+<td align="center">
+<font face="Times New Roman" color="#FFFFFF" size="3">
+<img src="https://blob.gifcities.org/gifcities/4L6M2E4ETXXLJ54C4TVQII6ZFUIQDRCO.gif" alt="[counter]" width="50" height="35">
+You are visitor #<font face="Courier New" color="#00FF00" size="6"><b>012847</b></font>
+<img src="https://blob.gifcities.org/gifcities/6VCNEEJVNKNOR5F6RPVXGLQT2FTN6YBK.gif" alt="[counter]" width="50" height="35">
+<br>
+<font color="#FFD700" size="2">(thats more than Craig LOL)</font>
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- ======================================== -->
+<!-- WEBRING BOTTOM BAR                        -->
+<!-- ======================================== -->
+<table width="600" border="2" bordercolor="#666666" cellpadding="10" cellspacing="0" bgcolor="#222222">
+<tr>
+<td align="center">
+<font face="Times New Roman" color="#FFFFFF" size="2">
+<img src="https://blob.gifcities.org/gifcities/46IFPABPKDVU6GGCYOFNROALJJEZ465G.gif" alt="[globe]" width="60" height="60">
+<br>
+This <font color="#FFD700"><b>Geocities WallStreet Trading Ring</b></font> site is owned by <font color="#FF69B4"><b>Amber @ Firestar Digital</b></font>
+<br><br>
+Want to join the <b>Trading Infrastructure Ring</b>?
+<br>
+[ <a href="#"><font color="#00FFFF">Skip Prev</font></a> | <a href="#"><font color="#00FFFF">Prev</font></a> | <a href="#"><font color="#00FFFF">Next</font></a> | <a href="#"><font color="#00FFFF">Skip Next</font></a> | <a href="#"><font color="#00FFFF">Random</font></a> | <a href="#"><font color="#00FFFF">Next 5</font></a> | <a href="#"><font color="#00FFFF">List Sites</font></a> ]
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- MEGA BOTTOM SPARKLE DIVIDER -->
+<img src="https://blob.gifcities.org/gifcities/4HVHH7B3KEFTKDAYM7XBBUU4Z4USJ4QZ.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/5TZQX2ODY2WJBEXXRF3PZYYIFVMS3MU4.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/CJIEUZFZSTRSPUMF57AOSTDGKKUXYB6H.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/DSB6NSUDHALJR5PD5QU6AF22ZHD37DGB.gif" alt="*" width="40" height="40">
+<font face="Georgia, Times New Roman, serif" color="#FFD700" size="3"><b> ~*~$~*~$~*~$~*~ </b></font>
+<img src="https://blob.gifcities.org/gifcities/DSB6NSUDHALJR5PD5QU6AF22ZHD37DGB.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/CJIEUZFZSTRSPUMF57AOSTDGKKUXYB6H.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/5TZQX2ODY2WJBEXXRF3PZYYIFVMS3MU4.gif" alt="*" width="40" height="40">
+<img src="https://blob.gifcities.org/gifcities/4HVHH7B3KEFTKDAYM7XBBUU4Z4USJ4QZ.gif" alt="*" width="40" height="40">
+
+<br><br>
+
+<!-- ======================================== -->
+<!-- FOOTER                                    -->
+<!-- ======================================== -->
+<table width="600" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td align="center">
+
+<!-- BADGES - BIG -->
+<table border="0" cellpadding="5" cellspacing="8">
+<tr>
+<td><img src="https://blob.gifcities.org/gifcities/4HBDYO222DAVGAKMVEPNKXCSM2N573Y2.gif" alt="Best viewed in Netscape" width="120" height="42"></td>
+<td><img src="https://blob.gifcities.org/gifcities/AFCZ4HZS2GWJ7GXGDN7DCAFUXT73TGN3.gif" alt="Netscape Now!" width="120" height="42"></td>
+<td><img src="https://blob.gifcities.org/gifcities/BE74VKFT26W7XCTU3BNG3ZUSXQC6TEG4.gif" alt="Made with Notepad" width="120" height="42"></td>
+</tr>
+</table>
+
+<br>
+
+<font face="Times New Roman" color="#999999" size="2">
+Best viewed in <b>Netscape Navigator 4.0</b> at <b>800x600</b>
+<br>
+Made with <b>Notepad</b> on a <b>Gateway 2000</b> fueled by sushi and Spice Girls
+</font>
+<br><br>
+
+<img src="https://blob.gifcities.org/gifcities/46IFPABPKDVU6GGCYOFNROALJJEZ465G.gif" alt="[globe]" width="100" height="100">
+
+<br>
+
+<font face="Times New Roman" color="#666666" size="2">
+Copyright &copy; 1998 Amber / Firestar Digital - All Rights Reserved FOREVER
+<br>
+<a href="mailto:xXfirestargirl98Xx@hotmail.com"><font color="#00FFFF">xXfirestargirl98Xx@hotmail.com</font></a> | Hosted by <a href="http://www.geocities.com"><font color="#00FFFF">Geocities</font></a>
+</font>
+
+<br><br>
+
+<!-- FIRE ROW -->
+<img src="https://blob.gifcities.org/gifcities/H2LWRZATSWRBEMGOTVQRYW4UCSBDBOOD.gif" alt="FIRE" width="100" height="100">
+<img src="https://blob.gifcities.org/gifcities/4ZWHJUWAOBFM56J444WMIILMG7ZMVOP7.gif" alt="FIRE" width="120" height="120">
+<img src="https://blob.gifcities.org/gifcities/EGV3BAYR6OK3X63J4CBSJADOLYW4WGAN.gif" alt="FIRE" width="100" height="100">
+
+<br>
+<font face="Georgia, Times New Roman, serif" color="#FF69B4" size="2">
+<b><i>Last updated: March 14th, 1998 at 4:47am (CRAIG WOULD NEVER)</i></b>
+</font>
+
+</td>
+</tr>
+</table>
+
+<br><br><br>
+
+</center>
+
+</body>
+</html>
