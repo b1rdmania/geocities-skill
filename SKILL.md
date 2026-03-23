@@ -238,17 +238,46 @@ setInterval(makeSnow, 300);
 
 ## GIFs
 
-**Use real animated GIFs from gifcities.org** — NOT inline SVG placeholders. The GIFs are what make it feel real.
+**MANDATORY: Every page MUST use real animated GIFs from blob.gifcities.org. This is non-negotiable.**
 
-See `GIF-CATALOG.md` for a curated collection organized by category, with full URLs ready to use. To find more:
+The difference between a convincing Geocities page and a modern imitation is the GIFs. CSS animations, inline SVGs, emoji, unicode characters, and text art are NOT substitutes for real GIFs. If the page has no real `<img src="https://blob.gifcities.org/...">` tags, it has failed.
+
+### Primary Source: GIF-CATALOG.md
+
+**Read `GIF-CATALOG.md` before generating any HTML.** It contains ~50 curated GIFs across 13 categories with full hashes ready to use. The base URL is:
 
 ```
-https://gifcities.org/search?q=[KEYWORD]&offset=0&page_size=10
+https://blob.gifcities.org/gifcities/[HASH].gif
 ```
 
-Parse the HTML response for `<img>` tags with `blob.gifcities.org` URLs. Search for objects (`fire`, `star`, `gold`), page elements (`welcome`, `divider`, `counter`), and vibes (`cool`, `new`, `award`).
+Every page should use **at least 15-20 GIFs** from the catalog across multiple categories: fire/flames, sparkles, dividers, under construction, welcome banners, globes, badges, and topic-specific imagery.
 
-Every page should use **at least 15-20 GIFs** across multiple categories: fire/flames, sparkles, dividers, under construction, welcome banners, globes, badges, and topic-specific imagery.
+### Finding Additional GIFs
+
+The gifcities.org website is a JavaScript app — fetching it directly will not return GIF URLs. To find GIFs beyond the catalog, use WebSearch to find gifcities.org blob URLs by keyword, or use additional hashes you know are valid. Do not attempt to fetch gifcities.org/search directly.
+
+### Usage
+```html
+<!-- Sizes by category -->
+<!-- Sparkles/stars: 30-50px -->
+<!-- Fire: 80-120px -->
+<!-- Dividers: 400-550px wide, use width="100%" -->
+<!-- Under construction: 150-200px -->
+<!-- Welcome banners: 200-300px -->
+<!-- Badges (Netscape etc): 88x31px — the classic web badge size -->
+<!-- Globe: 30-120px depending on context -->
+<!-- NEW badges: 50-80px wide -->
+<!-- Awards: 80-100px -->
+<!-- Email: 60-100px -->
+```
+
+Place GIFs:
+- Flanking the welcome banner (fire, sparkles)
+- As section dividers (divider category — use `width="100%"`)
+- Under construction notices (construction category)
+- In the footer (globe, Netscape badge, Notepad badge)
+- Scattered throughout content areas (topic-relevant + general)
+- "NEW!" badges next to recently updated sections
 
 ## Splash Page (Optional)
 
@@ -262,17 +291,17 @@ For maximum authenticity, generate a separate splash page (`index.html`) that li
 
 ## Generation Process
 
-1. **Receive topic** from user
-2. **Assign neighborhood** based on topic category
-3. **Choose color scheme** — 3-4 clashing colors from the palette
-4. **Choose background** — tiled SVG starfield as data URI on `<body background="...">`
-5. **Search gifcities.org** for topic-relevant GIFs (fire, sparkles, dividers, plus topic-specific)
+1. **Read `GIF-CATALOG.md`** — load the full catalog before writing a single line of HTML. Select GIFs by category for use throughout the page.
+2. **Receive topic** from user
+3. **Assign neighborhood** based on topic category
+4. **Choose color scheme** — 3-4 clashing colors from the palette
+5. **Choose background** — tiled SVG starfield as data URI on `<body background="...">`
 6. **Generate page author persona** — name, email, AIM screenname, location, year
-7. **Build the HTML** — using ONLY `<table>`, `<font>`, `<center>`, `<br>`, `<hr>`, `<marquee>`, `<blink>`, and other period-appropriate tags
-8. **Add interactivity** — cursor trail + at least one other JS element
-9. **Add decorative elements** — real gifcities.org GIFs, at least 15-20 per page
-10. **Include period-appropriate content** — about me, links, guestbook, webring, hit counter
-11. **Write earnest, unironic copy** — the author loves this website and their topic
+7. **Plan GIF placement** — assign catalog GIFs to: welcome banner flanks, section dividers, under construction, footer badges, topic-specific spots
+8. **Build the HTML** — using ONLY `<table>`, `<font>`, `<center>`, `<br>`, `<hr>`, `<marquee>`, `<blink>`, `<img>` and other period-appropriate tags. Real GIFs in every section.
+9. **Add interactivity** — cursor trail + at least one other JS element
+10. **Write earnest, unironic copy** — the author loves this website and their topic
+11. **Count GIFs** — verify the page has at least 15 real `<img src="https://blob.gifcities.org/...">` tags before finishing
 
 ## Output
 
@@ -290,6 +319,19 @@ Generate a 1998-style personal website about Visual Basic programming
 Generate a 1998-style personal website about my dad's chili recipe
 ```
 
+## Iron Laws
+
+1. **Read GIF-CATALOG.md first.** Every time. Before any HTML.
+2. **Minimum 15 real GIFs** from blob.gifcities.org per page. Count them.
+3. **No CSS substitutes for GIFs.** No SVG animations, no CSS keyframes, no emoji standing in for animated GIFs.
+4. **No modern HTML.** No `<!DOCTYPE>`, no `<header>`, no `<nav>`, no semantic tags.
+5. **No CSS classes or stylesheets.** Inline `<font>` tags and element attributes only.
+6. **No flexbox or grid.** Tables only.
+7. **No responsive design.** Fixed 600px width.
+8. **The author is sincere.** Never ironic.
+9. **No modern JavaScript.** `var`, `document.write`, string concatenation. No `const`, `let`, arrow functions.
+10. **No `<!DOCTYPE html>`.** This is 1998.
+
 ## Anti-Patterns (Things to AVOID)
 
 - **Do NOT use CSS classes or stylesheets.** Inline attributes and `<font>` tags only.
@@ -299,3 +341,6 @@ Generate a 1998-style personal website about my dad's chili recipe
 - **Do NOT be ironic.** The page author is sincere. They are not doing this as a joke. They genuinely think this website is cool.
 - **Do NOT use modern JavaScript.** No `const`, `let`, arrow functions, template literals. Use `var`, `document.write`, `window.status`, and string concatenation.
 - **Do NOT include `<!DOCTYPE html>`.** This is 1998. We don't need your fancy document types.
+- **Do NOT substitute CSS animations, inline SVGs, unicode sparkles, or emoji for animated GIFs.** Real GIFs or nothing.
+- **Do NOT skip GIF-CATALOG.md.** If you haven't read it, you don't know what GIFs are available. Read it first.
+- **Do NOT generate a page with fewer than 15 real blob.gifcities.org img tags.** A Geocities page without GIFs is just a bad HTML document.
