@@ -1,6 +1,6 @@
 # Geocities Skill
 
-A Claude Code skill that generates authentically terrible 1998-era personal websites. Table layouts, `<marquee>` tags, bold italic serif fonts, animated GIF dividers, hit counters, guestbooks, webrings, and auto-playing MIDI references. The full Geocities experience.
+A Claude Code skill that generates authentically terrible 1998-era personal websites. Table layouts, `<marquee>` tags, Comic Sans, animated GIF dividers, hit counters, guestbooks, webrings, and auto-playing MIDI references. The full Geocities experience.
 
 ## What It Does
 
@@ -10,11 +10,9 @@ The output is a single `.html` file. No build tools. No frameworks. No dignity.
 
 ## Setup
 
-### As a Claude Code Skill
+Copy `SKILL.md` into your Claude Code project or reference it in your system prompt. Keep `GIF-CATALOG.md` in the same directory — the skill reads it before generating any HTML to select real GIFs by category.
 
-Copy `SKILL.md` into your Claude Code project or reference it in your system prompt. The skill will use `GIF-CATALOG.md` as a reference for sourcing real animated GIFs.
-
-### Quick Start
+## Quick Start
 
 ```
 Generate a 1998-style personal website about [YOUR TOPIC]
@@ -28,37 +26,31 @@ Options:
 ## Files
 
 ```
-SKILL.md          — The skill prompt (the brain)
-GIF-CATALOG.md    — Curated GIF collection from gifcities.org with URLs + search instructions
+SKILL.md          — The skill prompt
+GIF-CATALOG.md    — ~320 real GIF hashes across 29 categories
 examples/         — Example output pages
 ```
 
 ## GIFs
 
-Every generated page uses **real animated GIFs** from [gifcities.org](https://gifcities.org) — the Internet Archive's searchable Geocities GIF collection. No inline SVG placeholders. The GIFs are what make it feel real.
+Every generated page uses **real animated GIFs** from [gifcities.org](https://gifcities.org) — the Internet Archive's Geocities GIF collection. Minimum 15 per page. No CSS substitutes, no SVG placeholders, no emoji standing in for the real thing.
 
-`GIF-CATALOG.md` contains ~50 curated GIFs across 13 categories (fire, sparkles, under construction, dividers, money, globes, badges, etc.) plus instructions for finding more via the gifcities.org search API.
+`GIF-CATALOG.md` contains ~320 hashes across 29 categories:
+
+**Chrome** — fire, sparkles, dividers, globes, under construction, money, email, welcome, guestbook, awards, counters, Netscape badges, computer/tech
+
+**Topic-specific** — cats, dogs, space/aliens, music/guitar, food, dragons/fantasy, hearts/rainbow, skulls/punk, sports, flowers/butterflies, explosions, angels/fairies, lightning/storm, medieval/scrolls, flags/USA, clocks
+
+The skill reads the catalog first, assigns GIFs by category to specific page locations (banner flanks, dividers, footer badges, topic spots), then builds the HTML around them.
 
 ## Example
 
-The `examples/` directory contains a complete two-page Geocities site for **Firestar Digital** (a fictional trading infrastructure company):
+The `examples/` directory contains a complete two-page Geocities site for **Firestar Digital**:
 
 - `firestar-digital-splash.html` — Splash/enter page
 - `firestar-digital.html` — Full site with all the chaos
 
-Features demonstrated:
-- Dollar sign cursor echo trail (12 fading $ symbols follow the mouse)
-- Animated starfield background with shooting stars
-- Falling gold coins
-- Three simultaneous marquees
-- Right-click protection alert
-- Secret password section
-- Live clock + days-online counter
-- Status bar scrolling text
-- Guestbook with rival character (Craig)
-- Webring navigation
-- Self-awarded site awards
-- Bold italic serif typography (Georgia) in gold on dark blue
+Features: dollar sign cursor trail, animated starfield, falling gold coins, three marquees, right-click protection, secret password section, live clock, status bar scroller, guestbook with rival character (Craig), webring, self-awarded site awards.
 
 ## Live Demo
 
