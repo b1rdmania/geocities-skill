@@ -110,16 +110,67 @@ The page reads like the **official website** — same copy, same sections — bu
 
 Every generated page **MUST** include ALL of the following:
 
-### 1. Document Structure
+### 1. Document Structure & Social Meta Tags
 ```html
 <html>
 <head>
 <title>~*~ [TOPIC] ~*~ Welcome to [NAME]'s [TOPIC] Page!!! ~*~</title>
+<meta name="theme-color" content="[brand bg color]">
+<meta property="og:title" content="[DEGEN TITLE — see rules below]">
+<meta property="og:description" content="[DEGEN DESCRIPTION — see rules below]">
+<meta property="og:image" content="og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="[DEGEN TITLE]">
+<meta name="twitter:description" content="[DEGEN DESCRIPTION]">
+<meta name="twitter:image" content="og.png">
 </head>
 ```
 - No `<!DOCTYPE>`. No `<meta charset>`. This is 1998.
 - `<body>` tag with `bgcolor`, `text`, `link`, `vlink`, `alink` attributes
 - Tiled background using a `background` attribute (use a data URI for a small tiled pattern)
+- `og:image` is `og.png` (relative) — the user will add the screenshot after publishing
+
+#### OG Title Rules — Degen Geocities Style
+
+The `og:title` and `twitter:title` must be written in authentic Geocities degen style. This is what shows in Telegram/Twitter link previews — it should look unhinged in the best way.
+
+**Fan Page mode** — persona-first, hyperbolic:
+```
+*~* [PERSONA]'s [TOPIC] FAN PAGE!!! *~* :: The BEST [TOPIC] Site on the INTERNET
+~*~ WELCOME TO MY [TOPIC] SHRINE ~*~ :: [NEIGHBORHOOD] Geocities
+```
+
+**Replica mode** — brand stat-heavy, ALL CAPS key terms, separators:
+```
+*~* [BRAND] *~* :: [TAGLINE] :: [KEY STAT] :: Est. 1998
+~*~ [BRAND NAME] *~* [NEIGHBOURHOOD] :: [HERO COPY] :: [METRIC]!!!
+```
+
+Examples:
+- `*~* YEARN FINANCE *~* :: $326M TVL :: Earn on your Crypto :: Est. 1998`
+- `~*~ YFI_MAXI_2020's YEARN FAN PAGE ~*~ :: The BEST DeFi Site on The INTERNET!!!`
+- `*~* STRIPE *~* :: Payments Infrastructure for the Internet :: WallStreet Neighborhood`
+- `~*~ Dave CryptoApe98's BLOCMATES SHRINE ~*~ :: East London's #1 Alpha Source!!!`
+
+#### OG Description Rules — Degen Geocities Style
+
+The description should read like a Geocities page author wrote it — excited, over-punctuated, mixing real info with absurd 1998 energy. Max ~155 chars for display, but write it hot.
+
+**Fan Page mode:**
+```
+[PERSONA] from [LOCATION] presents: THE GREATEST [TOPIC] FAN PAGE!! Signed guestbooks: [number] :: Under construction since [year] :: PLEASE SIGN MY GUESTBOOK!!!
+```
+
+**Replica mode** — lead with the hero stat/tagline, then key features, then excitement:
+```
+[HERO STAT OR TAGLINE]!! :: [FEATURE 1] :: [FEATURE 2] :: [FEATURE 3] :: Best viewed in Netscape 4.0!!
+```
+
+Examples:
+- `$326,396,246 deposited in Yearn Vaults!! :: yCRV :: LP Token Vaults :: veYFI :: Earn on your Crypto!! Best viewed in Netscape 4.0`
+- `THE BEST DeFi site on the INTERNET made by YFI_Maxi_2020 from London!! Sign my guestbook plz!!!`
+- `17,000 newsletter readers can't be wrong!! :: The Alpha :: The Meal Deal :: Way of the Ape :: WAGMI!!!`
 
 ### 2. The Welcome Banner
 - A `<center>` block at the top
@@ -407,11 +458,12 @@ For maximum authenticity, generate a separate splash page (`index.html`) that li
 5. **Choose color scheme** — extracted brand colors (Replica) or clashing palette (Fan Page)
 6. **Choose background** — tiled SVG starfield as data URI on `<body background="...">`
 7. **Generate page author persona** (Fan Page) or map real site sections (Replica)
-8. **Plan GIF placement** — assign catalog GIFs to: welcome banner flanks, section dividers, under construction, footer badges, topic-specific spots
-9. **Build the HTML** — using ONLY `<table>`, `<font>`, `<center>`, `<br>`, `<hr>`, `<marquee>`, `<blink>`, `<img>` and other period-appropriate tags. Real GIFs in every section. Real logo in header for Replica mode.
-10. **Add interactivity** — cursor trail (topic-themed symbol for Replica) + at least one other JS element
-11. **Write earnest, unironic copy** — sincere superfan (Fan Page) or straight site content in 1998 aesthetic (Replica)
-12. **Count GIFs** — verify the page has at least 15 real `<img src="https://blob.gifcities.org/...">` tags before finishing
+8. **Draft OG title and description** — write them in degen Geocities style before writing any HTML (see rules in Required Elements § 1). The og:image is `og.png` (relative placeholder).
+9. **Plan GIF placement** — assign catalog GIFs to: welcome banner flanks, section dividers, under construction, footer badges, topic-specific spots
+10. **Build the HTML** — using ONLY `<table>`, `<font>`, `<center>`, `<br>`, `<hr>`, `<marquee>`, `<blink>`, `<img>` and other period-appropriate tags. Real GIFs in every section. Real logo in header for Replica mode. OG meta tags in `<head>`.
+11. **Add interactivity** — cursor trail (topic-themed symbol for Replica) + at least one other JS element
+12. **Write earnest, unironic copy** — sincere superfan (Fan Page) or straight site content in 1998 aesthetic (Replica)
+13. **Count GIFs** — verify the page has at least 15 real `<img src="https://blob.gifcities.org/...">` tags before finishing
 
 ---
 
@@ -420,6 +472,12 @@ For maximum authenticity, generate a separate splash page (`index.html`) that li
 A single HTML file (or two files if splash page included) saved to `~/Downloads/[topic-slug]-geocities.html`
 
 The file should be openable in any modern browser and look authentically terrible. The goal is not parody — it's **reverence**. These pages had soul. We're bringing that soul back, one `<marquee>` at a time.
+
+### After Publishing (here.now or any static host)
+Once the user has a public URL, they can:
+1. Take a screenshot of the top of the page (1200x630)
+2. Upload it as `og.png` alongside `index.html`
+3. The social preview will show the actual Geocities page — which looks incredible in a Telegram link unfurl
 
 ---
 
@@ -451,6 +509,7 @@ Make a 1998 replica of https://linear.app
 10. **No `<!DOCTYPE html>`.** This is 1998.
 11. **Ask about mode if unclear.** Fan Page or Replica — they produce different outputs.
 12. **Extract brand assets for Replica mode.** Fetch the URL, pull colors and logo, use them.
+13. **OG meta tags on every page.** Title and description in degen Geocities style. og:image as `og.png`.
 
 ---
 
@@ -468,3 +527,4 @@ Make a 1998 replica of https://linear.app
 - **Do NOT generate a page with fewer than 15 real blob.gifcities.org img tags.**
 - **Do NOT invent a persona for Replica mode.** Use the brand's real voice, just in 1998 aesthetics.
 - **Do NOT ignore brand colors in Replica mode.** Extract them, use them, geocities-ify them.
+- **Do NOT write a boring og:title.** `*~*` and `::` separators are mandatory. Make it unhinged.
