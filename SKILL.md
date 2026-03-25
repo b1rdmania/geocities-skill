@@ -4,14 +4,39 @@
 
 ## What This Skill Does
 
-Takes a **topic** (person, hobby, pet, band, conspiracy theory, recipe collection — anything) and generates a complete standalone HTML file that looks like it was hand-coded in Notepad on Windows 98 and uploaded via FTP to a Geocities subdirectory.
+Takes a **topic or URL** and generates a complete standalone HTML file that looks like it was hand-coded in Notepad on Windows 98 and uploaded via FTP to a Geocities subdirectory.
+
+Two modes. Both fun.
 
 The output is a single `.html` file. No build tools. No frameworks. No dignity.
+
+---
+
+## Mode Selection
+
+**Ask the user (or infer from their prompt) which mode they want before generating:**
+
+### Fan Page Mode
+The page is written by a **sincere superfan** of the topic or brand. They discovered it, their life changed, and now they have a Geocities page about it. Invented persona, fictional guestbook entries from other fans, personal commentary ("I first heard about Yearn in DeFi Summer 2020 and I have never been the same"), and genuine enthusiasm.
+
+Use when: user gives a topic/brand name, asks for a "fan page", or the prompt implies a persona.
+
+### Replica Mode
+Take the **actual content and structure of a real website** and render it as if it was built in 1998. Same sections, same copy, same logo colors — but with table layouts, `<font>` tags, marquees, and GIFs. The homepage nav becomes a Geocities nav table. The hero becomes a `<center>` banner with fire GIFs. The brand's real color palette gets geocities-ified (same hues, cranked up to garish).
+
+Use when: user provides a URL, asks to "geocities-ify [site]", or asks for a "1998 version of [brand]".
+
+**If it's ambiguous, ask:** "Do you want a fan page (sincere superfan persona) or a 1998 replica of the actual site?"
+
+---
 
 ## Invocation
 
 ```
-Generate a 1998-style personal website about [TOPIC]
+Generate a 1998-style personal website about [TOPIC]          → Fan Page mode
+Geocities-ify https://example.com                             → Replica mode (fetch URL first)
+Make a 1998 replica of [brand]                                → Replica mode
+Make a fan page for [brand/topic]                             → Fan Page mode
 ```
 
 The user may also provide:
@@ -19,8 +44,52 @@ The user may also provide:
 - A mood (earnest, unhinged, wholesome, paranoid)
 - Specific elements they want included
 
+---
+
+## Brand Extraction (for URL-based requests)
+
+When the user provides a URL, **fetch and extract brand assets before writing any HTML**:
+
+### Step 1: Fetch the page
+```
+WebFetch the URL and parse the HTML
+```
+
+### Step 2: Extract colors
+Look for these in order:
+- `<meta name="theme-color" content="#XXXXXX">` — the brand's primary color
+- CSS custom properties in `<style>` blocks: `--color-primary`, `--brand`, `--accent`, etc.
+- `og:image` meta tag URL — note the visual context
+- Inline `background-color` or `color` on `<body>` or major layout elements
+
+### Step 3: Extract the logo/favicon
+Try these paths in order until one works:
+1. `<link rel="icon">` or `<link rel="apple-touch-icon">` in the `<head>`
+2. `/apple-touch-icon.png`
+3. `/favicon.ico`
+4. OG image from `<meta property="og:image">`
+5. Any `<img>` with "logo" in the src or alt attribute
+
+**Use the real logo/favicon as an `<img>` tag** in the page header. A tiny pixelated favicon at 64x64 looks very 1998. The OG image can be used as a "site banner."
+
+### Step 4: Geocities-ify the color palette
+Take the extracted hex colors and adapt them:
+- Keep the hue, but push brightness and saturation to garish extremes
+- Dark brand color → use as background, add neon version as text/border color
+- Brand accent → use for headers and marquee text
+- Add at least one clashing color from the classic Geocities palette that wasn't in the original
+
+Example — Yearn Finance (#000000 bg, blue accents):
+- Background: #000033 (dark navy, preserved)
+- Text: #00CCFF (neon cyan, Geocities-ified blue)
+- Accent: #FFD700 (gold — clashing addition)
+- Links: #9966FF (purple — another clash)
+
+---
+
 ## Voice & Persona
 
+### Fan Page Mode
 The page author is **sincere**. They are not being ironic. They learned HTML from "view source" on other Geocities pages and a printed copy of "HTML for Dummies." They are genuinely proud of this website. They think the cursor trail is cutting-edge. They apologize for the page being "under construction" even though it has been under construction since 1997.
 
 Key tonal markers:
@@ -31,6 +100,11 @@ Key tonal markers:
 - Treats the guestbook like social media
 - Random capitalization for emphasis
 - Updates noted with exact dates ("Last updated: March 14th, 1998 at 2:34am!!")
+
+### Replica Mode
+The page reads like the **official website** — same copy, same sections — but rendered by someone who clearly learned HTML from a library book in 1998. No invented persona. The guestbook entries are from real-sounding customers/users. The "about us" section uses the company's real voice, just in Comic Sans on a tiled starfield.
+
+---
 
 ## Required Elements
 
@@ -52,6 +126,7 @@ Every generated page **MUST** include ALL of the following:
 - `<font>` tag with `face="Comic Sans MS"` or `"Papyrus"` and `size="6"` or `size="7"`
 - The page title in a garish color
 - Flanked by sparkle/star decorations using unicode: `*~*`, `+:.*.:+`, `*.+`, or `~*~`
+- In **Replica mode**: include the real logo/favicon as an `<img>` tag
 - A `<marquee>` with a welcome message or quote
 
 ### 3. Navigation
@@ -96,6 +171,8 @@ At least TWO of these:
 - **Clock**: A ticking clock showing the current time
 - **Days counter**: "This page has been online for X days!"
 
+---
+
 ## Element Catalog
 
 Draw from these freely. Use at least 8-10 per page:
@@ -139,19 +216,30 @@ Assign based on topic:
 - **NapaValley** — food, wine, cooking
 - **Hollywood** — movies, celebrities, TV shows
 
+---
+
 ## Color Rules
 
+### Fan Page Mode
 Choose from the classic web-safe garish palette. Combine at least 3 that clash:
 
 ```
 Background favorites:  #000000, #000033, #330066, #003300, #660000, #FFFF00, #FF00FF, #00FFFF
-Text favorites:        #FFFFFF, #00FF00, #FF0000, #FFFF00, #00FFFF, #FF00FF, #FF6600
-Link favorites:        #0000FF, #00FF00, #FF00FF, #00FFFF
+Text favorites:        #FFFFFF, #00FF00, #FF0000, #FFFF00, #00CCFF, #FF00FF, #FF6600
+Link favorites:        #0000FF, #00FF00, #FF00FF, #00CCFF
 Accent favorites:      #FF0000, #FFFF00, #00FF00, #FF00FF, #FF6600
 Table bg favorites:    #333333, #000066, #003300, #330033, #333300, #663300
 ```
 
-The colors should make a modern designer physically uncomfortable. If they don't clash, you've failed.
+The colors should make a modern designer physically uncomfortable.
+
+### Replica Mode
+Start from the brand's extracted colors, then push them to Geocities extremes:
+- Preserve the brand hue so it's recognizable
+- Crank saturation and brightness
+- Add at least one clashing accent color that wasn't in the original brand
+
+---
 
 ## Typography Rules
 
@@ -161,6 +249,8 @@ The colors should make a modern designer physically uncomfortable. If they don't
 - `size` attribute: use `1` through `7`, with headers at `5`-`7`
 - **Never use CSS for fonts.** Always `<font>` tags.
 - Nest `<font>` tags inside other `<font>` tags for extra authenticity
+
+---
 
 ## Layout Rules
 
@@ -173,6 +263,8 @@ The colors should make a modern designer physically uncomfortable. If they don't
 - `border="1"` on tables that shouldn't have borders
 - `border="0"` on tables that structurally need them
 
+---
+
 ## Background Patterns
 
 Generate a tiled background as an inline SVG data URI. Options:
@@ -184,6 +276,8 @@ Generate a tiled background as an inline SVG data URI. Options:
 - **Matrix-style**: Green characters on black (SiliconValley)
 
 Encode as a small SVG and use as `background="data:image/svg+xml,..."` on the `<body>` tag.
+
+---
 
 ## Cursor Trail Implementation
 
@@ -212,7 +306,11 @@ document.addEventListener('mousemove', function(e) {
 });
 ```
 
-## Falling Snow Implementation
+For **Replica mode**, customise the trail symbol to match the brand — `$` for a finance site, `*` for a tech site, etc.
+
+---
+
+## Falling Snow/Particles Implementation
 
 For winter/holiday themes or general whimsy:
 
@@ -236,6 +334,8 @@ function makeSnow() {
 setInterval(makeSnow, 300);
 ```
 
+---
+
 ## GIFs
 
 **MANDATORY: Every page MUST use real animated GIFs from blob.gifcities.org. This is non-negotiable.**
@@ -244,7 +344,7 @@ The difference between a convincing Geocities page and a modern imitation is the
 
 ### Primary Source: GIF-CATALOG.md
 
-**Read `GIF-CATALOG.md` before generating any HTML.** It contains ~50 curated GIFs across 13 categories with full hashes ready to use. The base URL is:
+**Read `GIF-CATALOG.md` before generating any HTML.** It contains ~320 curated GIFs across 29 categories with full hashes ready to use. The base URL is:
 
 ```
 https://blob.gifcities.org/gifcities/[HASH].gif
@@ -252,9 +352,11 @@ https://blob.gifcities.org/gifcities/[HASH].gif
 
 Every page should use **at least 15-20 GIFs** from the catalog across multiple categories: fire/flames, sparkles, dividers, under construction, welcome banners, globes, badges, and topic-specific imagery.
 
+For **Replica mode**, select GIFs that match the brand's domain — finance site gets money/coins/gold, tech site gets computers/tech/lightning, etc.
+
 ### Finding Additional GIFs
 
-The gifcities.org website is a JavaScript app — fetching it directly will not return GIF URLs. To find GIFs beyond the catalog, use WebSearch to find gifcities.org blob URLs by keyword, or use additional hashes you know are valid. Do not attempt to fetch gifcities.org/search directly.
+The gifcities.org website is a JavaScript app — fetching it directly will not return GIF URLs. To find GIFs beyond the catalog, use WebSearch to find gifcities.org blob URLs by keyword. Do not attempt to fetch gifcities.org/search directly.
 
 ### Usage
 ```html
@@ -279,6 +381,8 @@ Place GIFs:
 - Scattered throughout content areas (topic-relevant + general)
 - "NEW!" badges next to recently updated sections
 
+---
+
 ## Splash Page (Optional)
 
 For maximum authenticity, generate a separate splash page (`index.html`) that links to the main page (`main.html`). The splash page should be minimal:
@@ -287,21 +391,29 @@ For maximum authenticity, generate a separate splash page (`index.html`) that li
 - Big "ENTER" button/link
 - Copyright line
 - Same starfield background
-- That's it — tease, don't spoil
+
+---
 
 ## Generation Process
 
 1. **Read `GIF-CATALOG.md`** — load the full catalog before writing a single line of HTML. Select GIFs by category for use throughout the page.
-2. **Receive topic** from user
-3. **Assign neighborhood** based on topic category
-4. **Choose color scheme** — 3-4 clashing colors from the palette
-5. **Choose background** — tiled SVG starfield as data URI on `<body background="...">`
-6. **Generate page author persona** — name, email, AIM screenname, location, year
-7. **Plan GIF placement** — assign catalog GIFs to: welcome banner flanks, section dividers, under construction, footer badges, topic-specific spots
-8. **Build the HTML** — using ONLY `<table>`, `<font>`, `<center>`, `<br>`, `<hr>`, `<marquee>`, `<blink>`, `<img>` and other period-appropriate tags. Real GIFs in every section.
-9. **Add interactivity** — cursor trail + at least one other JS element
-10. **Write earnest, unironic copy** — the author loves this website and their topic
-11. **Count GIFs** — verify the page has at least 15 real `<img src="https://blob.gifcities.org/...">` tags before finishing
+2. **Determine mode** — Fan Page or Replica. Ask if unclear.
+3. **If Replica mode and URL provided**:
+   - Fetch the URL and extract all text content and section structure
+   - Extract brand colors from `<meta name="theme-color">`, CSS vars, inline styles
+   - Extract logo/favicon from `<link rel="icon">`, `apple-touch-icon`, OG image, or logo img tag
+   - Geocities-ify the color palette (preserve hue, push to garish, add one clashing accent)
+4. **Assign neighborhood** based on topic/brand category
+5. **Choose color scheme** — extracted brand colors (Replica) or clashing palette (Fan Page)
+6. **Choose background** — tiled SVG starfield as data URI on `<body background="...">`
+7. **Generate page author persona** (Fan Page) or map real site sections (Replica)
+8. **Plan GIF placement** — assign catalog GIFs to: welcome banner flanks, section dividers, under construction, footer badges, topic-specific spots
+9. **Build the HTML** — using ONLY `<table>`, `<font>`, `<center>`, `<br>`, `<hr>`, `<marquee>`, `<blink>`, `<img>` and other period-appropriate tags. Real GIFs in every section. Real logo in header for Replica mode.
+10. **Add interactivity** — cursor trail (topic-themed symbol for Replica) + at least one other JS element
+11. **Write earnest, unironic copy** — sincere superfan (Fan Page) or straight site content in 1998 aesthetic (Replica)
+12. **Count GIFs** — verify the page has at least 15 real `<img src="https://blob.gifcities.org/...">` tags before finishing
+
+---
 
 ## Output
 
@@ -309,15 +421,21 @@ A single HTML file (or two files if splash page included) saved to `~/Downloads/
 
 The file should be openable in any modern browser and look authentically terrible. The goal is not parody — it's **reverence**. These pages had soul. We're bringing that soul back, one `<marquee>` at a time.
 
+---
+
 ## Example Invocations
 
 ```
 Generate a 1998-style personal website about my hamster collection
 Generate a 1998-style personal website about alien conspiracies (mood: paranoid)
 Generate a 1998-style personal website about Andrew Lloyd Webber (neighborhood: Hollywood)
-Generate a 1998-style personal website about Visual Basic programming
-Generate a 1998-style personal website about my dad's chili recipe
+Make a Geocities replica of https://stripe.com
+Geocities-ify https://yearn.fi
+Make a 1998 fan page for Yearn Finance
+Make a 1998 replica of https://linear.app
 ```
+
+---
 
 ## Iron Laws
 
@@ -328,9 +446,13 @@ Generate a 1998-style personal website about my dad's chili recipe
 5. **No CSS classes or stylesheets.** Inline `<font>` tags and element attributes only.
 6. **No flexbox or grid.** Tables only.
 7. **No responsive design.** Fixed 600px width.
-8. **The author is sincere.** Never ironic.
+8. **The author is sincere.** Never ironic. In Replica mode, the brand is sincere.
 9. **No modern JavaScript.** `var`, `document.write`, string concatenation. No `const`, `let`, arrow functions.
 10. **No `<!DOCTYPE html>`.** This is 1998.
+11. **Ask about mode if unclear.** Fan Page or Replica — they produce different outputs.
+12. **Extract brand assets for Replica mode.** Fetch the URL, pull colors and logo, use them.
+
+---
 
 ## Anti-Patterns (Things to AVOID)
 
@@ -338,9 +460,11 @@ Generate a 1998-style personal website about my dad's chili recipe
 - **Do NOT use semantic HTML.** No `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`.
 - **Do NOT use flexbox or grid.** Tables only.
 - **Do NOT use responsive design.** Fixed 600px width. If it doesn't fit your screen, that's your problem.
-- **Do NOT be ironic.** The page author is sincere. They are not doing this as a joke. They genuinely think this website is cool.
-- **Do NOT use modern JavaScript.** No `const`, `let`, arrow functions, template literals. Use `var`, `document.write`, `window.status`, and string concatenation.
-- **Do NOT include `<!DOCTYPE html>`.** This is 1998. We don't need your fancy document types.
+- **Do NOT be ironic.** The page is sincere — whether a fan or the brand itself.
+- **Do NOT use modern JavaScript.** No `const`, `let`, arrow functions, template literals.
+- **Do NOT include `<!DOCTYPE html>`.** This is 1998.
 - **Do NOT substitute CSS animations, inline SVGs, unicode sparkles, or emoji for animated GIFs.** Real GIFs or nothing.
 - **Do NOT skip GIF-CATALOG.md.** If you haven't read it, you don't know what GIFs are available. Read it first.
-- **Do NOT generate a page with fewer than 15 real blob.gifcities.org img tags.** A Geocities page without GIFs is just a bad HTML document.
+- **Do NOT generate a page with fewer than 15 real blob.gifcities.org img tags.**
+- **Do NOT invent a persona for Replica mode.** Use the brand's real voice, just in 1998 aesthetics.
+- **Do NOT ignore brand colors in Replica mode.** Extract them, use them, geocities-ify them.
