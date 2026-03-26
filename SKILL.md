@@ -266,6 +266,25 @@ Assign based on topic:
 - **CapitolHill** — politics, government
 - **NapaValley** — food, wine, cooking
 - **Hollywood** — movies, celebrities, TV shows
+- **Paris** — international, travel, community
+- **CollegePark** — community portals, webrings, directories
+
+---
+
+## Page Archetypes
+
+Pick one **before writing any HTML**. The archetype determines the structure — not just colors.
+
+| Archetype | What it is | Layout | Nav style | Divider style |
+|---|---|---|---|---|
+| **Fan Shrine** | Tribute to a person, band, protocol, or show | Single column, stacked sections, gallery rows | Horizontal strip or none | Rainbow bars, fire |
+| **Community Portal** | Webring, directory, or community hub | Full-width sections, member tile grid, classifieds listings | Quick-link strip (no sidebar) | Chain dividers |
+| **Financial Service** | Protocol, product, or financial tool | Two-column with stats sidebar, authoritative data tables | Sidebar nav | Gradient bars, lightning |
+| **News Zine** | Blog, newsletter, or editorial | Dated entry list, headline hierarchy | Strip or none | Thin animated bars |
+| **Personal Homepage** | Someone's "home on the web" | About me box, links sidebar, hobbies/pets sections | Sidebar | Rainbow bars |
+| **Tech Reference** | Docs, tool, or developer resource | Monospaced code blocks, badge rows | Strip | Tech/circuit dividers |
+
+The default trap is using a Financial Service layout (2-col + sidebar) for every page regardless of what the site is. Match the archetype to the site.
 
 ---
 
@@ -405,6 +424,23 @@ Every page should use **at least 15-20 GIFs** from the catalog across multiple c
 
 For **Replica mode**, select GIFs that match the brand's domain — finance site gets money/coins/gold, tech site gets computers/tech/lightning, etc.
 
+### Thematic GIF Selection
+
+**Before writing any HTML**, pick 3-4 primary GIF categories from the catalog based on the site's domain. Draw 80%+ of your GIFs from these categories only. The remaining 20% can be generic Geocities chrome (sparkles, guestbook, Netscape badges, hit counter).
+
+| Site type | Primary categories | Avoid |
+|---|---|---|
+| Travel / community / nomads | Globe, Clocks, Flags, Stars | Money, Fire, Construction |
+| Finance / DeFi / trading | Money, Lightning, Fire, Stars | Globes, Hearts, Nature |
+| Tech / developer tools | Computer, Lightning, Stars, Under Construction | Money, Hearts, Dragons |
+| Music / entertainment | Music, Stars, Hearts, Fire | Money, Computer, Flags |
+| Food / cooking | Food, Flowers, Stars, Hearts | Computer, Fire, Skulls |
+| Fantasy / gaming | Dragons, Angels, Lightning, Stars | Money, Food, Flags |
+| Community / social | Hearts, Stars, Welcome, Guestbook | Skulls, Construction |
+| Punk / edgy / crypto anon | Skulls, Fire, Lightning, Explosions | Hearts, Angels, Flowers |
+
+**The default trap**: reaching for Fire + Money + Awards + Construction on every single page. That is the generic mix. If the site has nothing to do with finance or construction, those GIFs should not appear.
+
 ### Finding Additional GIFs
 
 The gifcities.org website is a JavaScript app — fetching it directly will not return GIF URLs. To find GIFs beyond the catalog, use WebSearch to find gifcities.org blob URLs by keyword. Do not attempt to fetch gifcities.org/search directly.
@@ -447,23 +483,25 @@ For maximum authenticity, generate a separate splash page (`index.html`) that li
 
 ## Generation Process
 
-1. **Read `GIF-CATALOG.md`** — load the full catalog before writing a single line of HTML. Select GIFs by category for use throughout the page.
+1. **Read `GIF-CATALOG.md`** — load the full catalog before writing a single line of HTML.
 2. **Determine mode** — Fan Page or Replica. Ask if unclear.
-3. **If Replica mode and URL provided**:
+3. **Select archetype** — Fan Shrine, Community Portal, Financial Service, News Zine, Personal Homepage, or Tech Reference. This determines the HTML skeleton, nav style, and divider style. Do not default to Financial Service layout.
+4. **Select 3-4 primary GIF categories** from the thematic table above based on the site's domain. Write them down. Draw 80%+ of GIFs from these categories only.
+5. **If Replica mode and URL provided**:
    - Fetch the URL and extract all text content and section structure
    - Extract brand colors from `<meta name="theme-color">`, CSS vars, inline styles
    - Extract logo/favicon from `<link rel="icon">`, `apple-touch-icon`, OG image, or logo img tag
    - Geocities-ify the color palette (preserve hue, push to garish, add one clashing accent)
-4. **Assign neighborhood** based on topic/brand category
-5. **Choose color scheme** — extracted brand colors (Replica) or clashing palette (Fan Page)
-6. **Choose background** — tiled SVG starfield as data URI on `<body background="...">`
-7. **Generate page author persona** (Fan Page) or map real site sections (Replica)
-8. **Draft OG title and description** — write them in degen Geocities style before writing any HTML (see rules in Required Elements § 1). The og:image is `og.png` (relative placeholder).
-9. **Plan GIF placement** — assign catalog GIFs to: welcome banner flanks, section dividers, under construction, footer badges, topic-specific spots
-10. **Build the HTML** — using ONLY `<table>`, `<font>`, `<center>`, `<br>`, `<hr>`, `<marquee>`, `<blink>`, `<img>` and other period-appropriate tags. Real GIFs in every section. Real logo in header for Replica mode. OG meta tags in `<head>`.
-11. **Add interactivity** — cursor trail (topic-themed symbol for Replica) + at least one other JS element
-12. **Write earnest, unironic copy** — sincere superfan (Fan Page) or straight site content in 1998 aesthetic (Replica)
-13. **Count GIFs** — verify the page has at least 15 real `<img src="https://blob.gifcities.org/...">` tags before finishing
+6. **Assign neighborhood** based on topic/brand category
+7. **Choose color scheme** — extracted brand colors (Replica) or clashing palette (Fan Page)
+8. **Choose background** — tiled SVG starfield as data URI on `<body background="...">`
+9. **Generate page author persona** (Fan Page) or map real site sections (Replica)
+10. **Draft OG title and description** — write them in degen Geocities style before writing any HTML (see rules in Required Elements § 1). The og:image is `og.png` (relative placeholder).
+11. **Plan GIF placement** — assign your chosen 3-4 category GIFs to: welcome banner flanks, section dividers, footer badges, topic-specific spots. Check the thematic GIF table — do not use off-category GIFs as filler.
+12. **Build the HTML** — structure matches the chosen archetype. Using ONLY `<table>`, `<font>`, `<center>`, `<br>`, `<hr>`, `<marquee>`, `<blink>`, `<img>` and other period-appropriate tags. Real GIFs in every section. Real logo in header for Replica mode. OG meta tags in `<head>`.
+13. **Add interactivity** — cursor trail (topic-themed symbol for Replica) + at least one other JS element
+14. **Write earnest, unironic copy** — sincere superfan (Fan Page) or straight site content in 1998 aesthetic (Replica)
+15. **Count GIFs** — verify the page has at least 15 real `<img src="https://blob.gifcities.org/...">` tags before finishing
 
 ---
 
@@ -510,6 +548,8 @@ Make a 1998 replica of https://linear.app
 11. **Ask about mode if unclear.** Fan Page or Replica — they produce different outputs.
 12. **Extract brand assets for Replica mode.** Fetch the URL, pull colors and logo, use them.
 13. **OG meta tags on every page.** Title and description in degen Geocities style. og:image as `og.png`.
+14. **Pick an archetype before writing HTML.** Structure follows archetype, not a default template.
+15. **Pick 3-4 GIF categories before placing any GIFs.** 80%+ of GIFs come from those categories. No off-category filler.
 
 ---
 
@@ -528,3 +568,6 @@ Make a 1998 replica of https://linear.app
 - **Do NOT invent a persona for Replica mode.** Use the brand's real voice, just in 1998 aesthetics.
 - **Do NOT ignore brand colors in Replica mode.** Extract them, use them, geocities-ify them.
 - **Do NOT write a boring og:title.** `*~*` and `::` separators are mandatory. Make it unhinged.
+- **Do NOT use the same HTML skeleton for every page.** A community portal and a financial service look nothing alike. Pick the archetype first.
+- **Do NOT scatter random GIFs from every category.** Pick 3-4 thematic categories and stick to them. A travel site does not need money bags. A finance site does not need dragons.
+- **Do NOT default to rainbow `<hr>` dividers everywhere.** Use chain dividers for journey/travel themes, gradient bars for finance, fire dividers for hype — match the divider to the archetype.
